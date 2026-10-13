@@ -55,7 +55,7 @@ Dato faltante: la especificación no define cómo se contabilizan las interrupci
 • Escalabilidad (Scalability): La plataforma debe dimensionarse para soportar una base de 15 millones de
 cuentas, operando con 2 millones de usuarios ac4vos semanales y soportando dramá4cos picos de tráfico ante eventos disruptivos masivos.
 
-QA-05. Escalabilidad ante picos de tráfico
+QA-05. Escalabilidad ante picos de tráfico (posible modifiability)
 (medida parcial)
 Parte	Descripción
 1. Fuente del estímulo:	Los usuarios de Trotamundos, especialmente durante eventos de disrupción de viajes.
@@ -67,7 +67,7 @@ Parte	Descripción
 
 Importante: las cifras de cuentas y usuarios activos semanales no definen por sí solas una carga de concurrencia. Para validar el escenario faltan solicitudes por segundo, distribución de operaciones y duración e intensidad de los picos.
 
-• Interoperabilidad (Interoperability): Es impera4va una integración fluida con intercambios de aerolíneas,
+• Interoperabilidad (Interoperability): Es imperativa una integración fluida con intercambios de aerolíneas,
 hoteles y arrendadoras a través de APIs estándar. Adicionalmente, el sistema debe interoperar con
 proveedores de correo para el escaneo de mensajes y con redes sociales para comparar itinerarios.
 
@@ -112,7 +112,7 @@ Inferencia de diseño: limitar los permisos al mínimo necesario, permitir la re
 otros medios de transporte (trenes, autobuses, etc.). Apoyándose en el uso de ADRs y contratos (Specdriven), el diseño general y el proto4po final deben exhibir una alta trazabilidad y facilitar evaluaciones
 futuras.
 
-QA-09. Evolucionabilidad: incorporar un nuevo medio de transporte
+QA-09. Evolucionabilidad: incorporar un nuevo medio de transporte (posible integrability)
 Parte	Descripción
 1. Fuente del estímulo:	Un desarrollador del sistema.
 2. Estímulo:	Necesita incorporar un nuevo medio de transporte, por ejemplo, trenes o autobuses.
