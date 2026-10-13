@@ -11,13 +11,17 @@ Proporcionar un panel web y móvil que centralice las reservas de viajes, las ag
 - Integraciones con proveedores de viajes.
 - Procesamiento de correo y filtros de remitentes.
 - Compartición controlada de itinerarios.
-- Archivado del contenido de viajes finalizados.
+- Archivado o eliminación del contenido de viajes finalizados.
 - Analítica de datos.
 - Un módulo avanzado obligatorio, elegido aquí como propuesta inicial.
 
 ## Fuera del límite
 
 Proveedores de correo, aerolíneas, hoteles, arrendadoras, agencias de viajes, redes sociales y servicios externos de identidad, cuando corresponda.
+
+## Diagrama de contexto
+
+![Diagrama de contexto](./Diagramas/diagrama_de_contexto.png)
 
 ## Cómo leerlo
 
