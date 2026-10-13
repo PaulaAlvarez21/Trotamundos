@@ -29,12 +29,12 @@ QA-02. Rendimiento móvil
 
 QA-03. Actualización de reservas externas
 Parte	Descripción
-1. Fuente del estímulo	Un proveedor externo de viajes, como una aerolínea, hotel o arrendadora.
-2. Estímulo	Genera una actualización de una reserva.
-3. Entorno	Funcionamiento del sistema mientras integra datos de proveedores externos. No se especifica qué ocurre durante una caída prolongada del proveedor.
-4. Artefacto	Integración externa, procesamiento de actualizaciones, persistencia de reservas y presentación del itinerario.
-5. Respuesta	Trotamundos procesa el cambio y lo presenta en la aplicación.
-6. Medida de respuesta	El cambio debe presentarse dentro de los cinco minutos posteriores a su generación por la fuente externa.
+1. Fuente del estímulo:	Un proveedor externo de viajes, como una aerolínea, hotel o arrendadora.
+2. Estímulo:	Genera una actualización de una reserva.
+3. Entorno:	Funcionamiento del sistema mientras integra datos de proveedores externos. No se especifica qué ocurre durante una caída prolongada del proveedor.
+4. Artefacto:	Integración externa, procesamiento de actualizaciones, persistencia de reservas y presentación del itinerario.
+5. Respuesta:	Trotamundos procesa el cambio y lo presenta en la aplicación.
+6. Medida de respuesta:	El cambio debe presentarse dentro de los cinco minutos posteriores a su generación por la fuente externa.
 
 
 • Disponibilidad (Availability):
@@ -43,12 +43,12 @@ un máximo de 5 minutos por mes de tiempo de inactvidad no planificado.
 
 QA-04. Disponibilidad
 Parte	Descripción
-1. Fuente del estímulo	Un viajero que necesita acceder al sistema.
-2. Estímulo	Solicita utilizar una funcionalidad disponible de Trotamundos.
-3. Entorno	Operación global y continua, incluyendo posibles fallos no planificados.
-4. Artefacto	Servicio de Trotamundos y componentes necesarios para atender la solicitud.
-5. Respuesta	El sistema permanece accesible o recupera el servicio después de una interrupción.
-6. Medida de respuesta	Máximo de cinco minutos de inactividad no planificada por mes.
+1. Fuente del estímulo:	Un viajero que necesita acceder al sistema.
+2. Estímulo:	Solicita utilizar una funcionalidad disponible de Trotamundos.
+3. Entorno:	Operación global y continua, incluyendo posibles fallos no planificados.
+4. Artefacto:	Servicio de Trotamundos y componentes necesarios para atender la solicitud.
+5. Respuesta:	El sistema permanece accesible o recupera el servicio después de una interrupción.
+6. Medida de respuesta:	Máximo de cinco minutos de inactividad no planificada por mes.
 
 Dato faltante: la especificación no define cómo se contabilizan las interrupciones parciales, si el cálculo es global o por región ni cómo se trata la indisponibilidad de un proveedor externo.
 
@@ -58,12 +58,12 @@ cuentas, operando con 2 millones de usuarios ac4vos semanales y soportando dram�
 QA-05. Escalabilidad ante picos de tráfico
 (medida parcial)
 Parte	Descripción
-1. Fuente del estímulo	Los usuarios de Trotamundos, especialmente durante eventos de disrupción de viajes.
-2. Estímulo	Se produce un aumento pronunciado de solicitudes concurrentes.
-3. Entorno	Picos de uso, incluidos los períodos de domingo-lunes y jueves-viernes y las disrupciones importantes de viajes.
-4. Artefacto	Aplicación, API, procesamiento de solicitudes y persistencia.
-5. Respuesta	El sistema continúa atendiendo las solicitudes de los usuarios.
-6. Medida de respuesta	La plataforma debe soportar 15 millones de cuentas y 2 millones de usuarios activos semanales. No se especifica la concurrencia máxima ni una latencia objetivo específica bajo el pico.
+1. Fuente del estímulo:	Los usuarios de Trotamundos, especialmente durante eventos de disrupción de viajes.
+2. Estímulo:	Se produce un aumento pronunciado de solicitudes concurrentes.
+3. Entorno:	Picos de uso, incluidos los períodos de domingo-lunes y jueves-viernes y las disrupciones importantes de viajes.
+4. Artefacto:	Aplicación, API, procesamiento de solicitudes y persistencia.
+5. Respuesta:	El sistema continúa atendiendo las solicitudes de los usuarios.
+6. Medida de respuesta:	La plataforma debe soportar 15 millones de cuentas y 2 millones de usuarios activos semanales. No se especifica la concurrencia máxima ni una latencia objetivo específica bajo el pico.
 
 Importante: las cifras de cuentas y usuarios activos semanales no definen por sí solas una carga de concurrencia. Para validar el escenario faltan solicitudes por segundo, distribución de operaciones y duración e intensidad de los picos.
 
@@ -74,12 +74,12 @@ proveedores de correo para el escaneo de mensajes y con redes sociales para comp
 QA-06. Interoperabilidad con proveedores externos
 (Medida pendiente)
 Parte	Descripción
-1. Fuente del estímulo	Un proveedor externo de viajes, correo o un servicio de compartición.
-2. Estímulo	Envía información o requiere intercambiar datos con Trotamundos mediante una interfaz compatible.
-3. Entorno	Integración con sistemas externos que pueden tener diferentes contratos y capacidades.
-4. Artefacto	Adaptadores, interfaces de integración y modelo interno de viajes y reservas.
-5. Respuesta	Trotamundos intercambia los datos pertinentes y los interpreta de acuerdo con su modelo interno.
-6. Medida de respuesta	El TPE exige integración mediante APIs estándar, pero no establece una métrica cuantitativa de éxito, latencia o tiempo de incorporación de proveedores.
+1. Fuente del estímulo:	Un proveedor externo de viajes, correo o un servicio de compartición.
+2. Estímulo:	Envía información o requiere intercambiar datos con Trotamundos mediante una interfaz compatible.
+3. Entorno:	Integración con sistemas externos que pueden tener diferentes contratos y capacidades.
+4. Artefacto:	Adaptadores, interfaces de integración y modelo interno de viajes y reservas.
+5. Respuesta:	Trotamundos intercambia los datos pertinentes y los interpreta de acuerdo con su modelo interno.
+6. Medida de respuesta:	El TPE exige integración mediante APIs estándar, pero no establece una métrica cuantitativa de éxito, latencia o tiempo de incorporación de proveedores.
 
 Inferencia de diseño: convendría definir pruebas de contrato y medidas de interoperabilidad para evaluar esta respuesta. Esas medidas adicionales no son valores establecidos por la consigna.
 
@@ -89,21 +89,21 @@ personas específicas designadas puedan visualizarlos.
 
 QA-07. Seguridad de itinerarios compartidos
 Parte	Descripción
-1. Fuente del estímulo	Un usuario que intenta acceder a un itinerario compartido.
-2. Estímulo	Solicita visualizar un itinerario para el cual puede tener o no autorización.
-3. Entorno	Operación normal, con itinerarios que pueden compartirse con personas específicas.
-4. Artefacto	API, mecanismo de autorización, lógica de acceso a itinerarios y datos almacenados.
-5. Respuesta	El sistema verifica los permisos y entrega el itinerario únicamente si el solicitante está autorizado; de lo contrario, rechaza el acceso.
-6. Medida de respuesta	Solo las personas específicamente designadas pueden visualizar el itinerario. No se especifica una tasa numérica de fallos de autorización.
+1. Fuente del estímulo:	Un usuario que intenta acceder a un itinerario compartido.
+2. Estímulo:	Solicita visualizar un itinerario para el cual puede tener o no autorización.
+3. Entorno:	Operación normal, con itinerarios que pueden compartirse con personas específicas.
+4. Artefacto:	API, mecanismo de autorización, lógica de acceso a itinerarios y datos almacenados.
+5. Respuesta:	El sistema verifica los permisos y entrega el itinerario únicamente si el solicitante está autorizado; de lo contrario, rechaza el acceso.
+6. Medida de respuesta:	Solo las personas específicamente designadas pueden visualizar el itinerario. No se especifica una tasa numérica de fallos de autorización.
 
 QA-08. Seguridad y privacidad del correo
 Parte	Descripción
-1. Fuente del estímulo	El usuario que autoriza la integración de su correo y el proveedor de correo que entrega los mensajes.
-2. Estímulo	Se solicita o ejecuta el escaneo de mensajes para detectar reservas de viajes.
-3. Entorno	El sistema procesa información personal y opera con permisos concedidos al proveedor de correo.
-4. Artefacto	Integración de correo, almacenamiento de credenciales o concesiones de acceso y procesador de mensajes.
-5. Respuesta	El sistema accede a los mensajes autorizados y procesa la información pertinente para identificar reservas.
-6. Medida de respuesta	El acceso debe ser seguro y autorizado. La especificación no fija métricas de seguridad cuantitativas.
+1. Fuente del estímulo:	El usuario que autoriza la integración de su correo y el proveedor de correo que entrega los mensajes.
+2. Estímulo:	Se solicita o ejecuta el escaneo de mensajes para detectar reservas de viajes.
+3. Entorno:	El sistema procesa información personal y opera con permisos concedidos al proveedor de correo.
+4. Artefacto:	Integración de correo, almacenamiento de credenciales o concesiones de acceso y procesador de mensajes.
+5. Respuesta:	El sistema accede a los mensajes autorizados y procesa la información pertinente para identificar reservas.
+6. Medida de respuesta:	El acceso debe ser seguro y autorizado. La especificación no fija métricas de seguridad cuantitativas.
 
 Inferencia de diseño: limitar los permisos al mínimo necesario, permitir la revocación del acceso y evitar exponer credenciales son medidas que proponemos para concretar el requisito. La consigna no determina el protocolo de autorización
 
@@ -114,12 +114,12 @@ futuras.
 
 QA-09. Evolucionabilidad: incorporar un nuevo medio de transporte
 Parte	Descripción
-1. Fuente del estímulo	Un desarrollador del sistema.
-2. Estímulo	Necesita incorporar un nuevo medio de transporte, por ejemplo, trenes o autobuses.
-3. Entorno	Tiempo de diseño y evolución del sistema.
-4. Artefacto	Modelo de reservas, contratos de integración, adaptadores y módulos del núcleo afectados por los nuevos datos.
-5. Respuesta	El desarrollador incorpora el nuevo medio de transporte manteniendo las funcionalidades existentes que no necesitan cambiar.
-6. Medida de respuesta	La arquitectura debe prever la incorporación futura de otros medios de transporte. No se especifica un presupuesto máximo de esfuerzo o tiempo.
+1. Fuente del estímulo:	Un desarrollador del sistema.
+2. Estímulo:	Necesita incorporar un nuevo medio de transporte, por ejemplo, trenes o autobuses.
+3. Entorno:	Tiempo de diseño y evolución del sistema.
+4. Artefacto:	Modelo de reservas, contratos de integración, adaptadores y módulos del núcleo afectados por los nuevos datos.
+5. Respuesta:	El desarrollador incorpora el nuevo medio de transporte manteniendo las funcionalidades existentes que no necesitan cambiar.
+6. Medida de respuesta:	La arquitectura debe prever la incorporación futura de otros medios de transporte. No se especifica un presupuesto máximo de esfuerzo o tiempo.
 
 La idea de que los cambios sean localizados es una decisión arquitectónica propuesta para satisfacer la evolucionabilidad; no una garantía textual de la especificación
 
@@ -129,9 +129,9 @@ mercado internacional (multiregión).
 
 QA-10. Usabilidad e internacionalización
 Parte	Descripción
-1. Fuente del estímulo	Un viajero que utiliza Trotamundos desde la web o un dispositivo móvil.
-2. Estímulo	Necesita consultar y gestionar sus viajes en una interfaz adecuada a su contexto de uso.
-3. Entorno	Uso web o móvil en un sistema preparado para operar internacionalmente y aprovechar capacidades nativas como GPS.
-4. Artefacto	Interfaz de usuario, presentación de itinerarios, localización y acceso a capacidades del dispositivo.
-5. Respuesta	El sistema presenta y permite gestionar la información de viaje mediante una interfaz adecuada al dispositivo y preparada para distintos mercados.
-6. Medida de respuesta	El TPE exige una interfaz rica y preparación arquitectónica para operar internacionalmente y en múltiples regiones, pero no fija una métrica cuantitativa de usabilidad o localización.
+1. Fuente del estímulo:	Un viajero que utiliza Trotamundos desde la web o un dispositivo móvil.
+2. Estímulo:	Necesita consultar y gestionar sus viajes en una interfaz adecuada a su contexto de uso.
+3. Entorno:	Uso web o móvil en un sistema preparado para operar internacionalmente y aprovechar capacidades nativas como GPS.
+4. Artefacto:	Interfaz de usuario, presentación de itinerarios, localización y acceso a capacidades del dispositivo.
+5. Respuesta:	El sistema presenta y permite gestionar la información de viaje mediante una interfaz adecuada al dispositivo y preparada para distintos mercados.
+6. Medida de respuesta:	El TPE exige una interfaz rica y preparación arquitectónica para operar internacionalmente y en múltiples regiones, pero no fija una métrica cuantitativa de usabilidad o localización.
