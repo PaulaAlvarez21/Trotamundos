@@ -30,3 +30,16 @@ El rectángulo de Trotamundos marca el sistema que vamos a diseñar; los demás 
 ## Límite de la información
 
 El administrador y el equipo de datos se agrupan en el diagrama para simplificar. Sus permisos y funciones exactos no están detallados en la consigna. El diagrama representa interacciones requeridas o necesarias para los casos descritos, no una API ya implementada.
+
+## Requisitos como drivers
+
+- Requerimientos funcionales priorizados: [`Requerimientos_funcionales.md`](./Requerimientos_funcionales.md).
+- Escenarios de atributos de calidad: [`Escenarios_de_atributos_de_calidad.md`](./Escenarios_de_atributos_de_calidad.md).
+- Árbol de utilidad (priorización de escenarios para ADD): [`Utility_tree.md`](./Utility_tree.md).
+
+## Proceso de diseño ADD
+
+Las iteraciones del método ADD, sus vistas y decisiones se documentan en:
+- [`ADD_borrador_inicial.md`](./ADD_borrador_inicial.md) — proceso ADD.
+- [`Diagramas/`](./Diagramas) — vistas arquitectónicas.
+- [`MADR/`](./MADR) — decisiones de diseño (formato MADR).

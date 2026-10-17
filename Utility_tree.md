@@ -2,7 +2,9 @@
 
 **Sistema:** Trotamundos — plataforma de gestión de viajes y reservas (web y móvil), con integración de proveedores externos (aerolíneas, hoteles, arrendadoras), proveedores de correo y redes sociales.
 
-**Entrada:** escenarios QA-01 a QA-10 construidos previamente (Modo 1) a partir del enunciado. Este documento aplica el Modo 3 (sección 34): verifica cada atributo contra su General Scenario, organiza el árbol Utility → atributo → preocupación → escenario y prioriza cada hoja.
+**Entrada:** escenarios QA-01 a QA-10 definidos en [`Escenarios_de_atributos_de_calidad.md`](./Escenarios_de_atributos_de_calidad.md) (Modo 1) y corregidos en [`Documentacion/correccionEscenariosTrotamundosV2.md`](./Documentacion/correccionEscenariosTrotamundosV2.md). Este documento aplica el Modo 3 (sección 34): verifica cada atributo contra su General Scenario, organiza el árbol Utility → atributo → preocupación → escenario y prioriza cada hoja.
+
+> **Fuente única.** Este documento consolida el árbol de utilidad del equipo en un solo archivo; reemplaza a los borradores previos `arbol-utilidad.md` y `Documentacion/arbol-utilidad-trotamundos.md`.
 
 ---
 
