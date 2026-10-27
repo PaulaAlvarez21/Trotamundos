@@ -2,7 +2,7 @@
 // Mantiene ACL explícita según MADR-0005
 import { EmailPort } from '../../ports/email.port';
 import { EmailMessage } from '../../../../../../../packages/domain/entities';
-import * as emailsData from '../../../../../../../packages/mocks/emails.json';
+import emailsData from '../../../../../../../packages/mocks/emails.json';
 
 export class EmailMockAdapter implements EmailPort {
   private whitelist = ['reservas@vuelos.com', 'hotel@reservas.com'];

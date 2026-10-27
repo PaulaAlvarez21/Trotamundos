@@ -162,3 +162,9 @@ Había código JSX fuera del componente (luego del `return`) que rompía la comp
         </div>
 ```
 - Se aseguró el cierre correcto: `</main> ) }`
+
+### 7) Imports de JSON en adapters
+Los adapters importaban con `import * as ... from '*.json'` y luego hacían `.filter()` lo cual fallaba con CommonJS/ts-node. Se cambió a default import.
+
+- `apps/api/src/modules/ingestion/adapters/out/email-mock.adapter.ts`
+- `apps/api/src/modules/ingestion/adapters/out/provider-mock.adapter.ts`

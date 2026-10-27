@@ -1,6 +1,6 @@
 // Adaptador mock para proveedores
 import { ProviderPort } from '../../ports/provider.port';
-import * as providersData from '../../../../../../../packages/mocks/providers.json';
+import providersData from '../../../../../../../packages/mocks/providers.json';
 
 export class ProviderMockAdapter implements ProviderPort {
   async pollUpdates(): Promise<any[]> {
