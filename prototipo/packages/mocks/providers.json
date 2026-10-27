@@ -1,0 +1,20 @@
+[
+  {
+    "provider": "AEROLINEA_X",
+    "bookingRef": "ABC123",
+    "status": "CONFIRMED",
+    "update": {
+      "gate": "12",
+      "status": "CHECK_IN_OPEN"
+    }
+  },
+  {
+    "provider": "HOTEL_Y",
+    "bookingRef": "HOTEL-456",
+    "status": "CONFIRMED",
+    "update": {
+      "room": "204",
+      "checkIn": "2026-11-01T15:00:00Z"
+    }
+  }
+]

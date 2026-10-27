@@ -1,0 +1,23 @@
+[
+  {
+    "id": "email-1",
+    "from": "reservas@vuelos.com",
+    "subject": "Confirmación de vuelo - Booking ABC123",
+    "body": "Su vuelo ha sido confirmado. Reserva ABC123. Vuelo para el 2026-11-01 desde Buenos Aires.",
+    "receivedAt": "2026-10-28T10:00:00Z"
+  },
+  {
+    "id": "email-2",
+    "from": "hotel@reservas.com",
+    "subject": "Reserva hotel confirmada - Ref HOTEL-456",
+    "body": "Gracias por reservar con nosotros. Código de reserva HOTEL-456. Estadía del 2026-11-01 al 2026-11-05.",
+    "receivedAt": "2026-10-28T11:00:00Z"
+  },
+  {
+    "id": "email-3",
+    "from": "spam@otro.com",
+    "subject": "Oferta",
+    "body": "Compre ahora...",
+    "receivedAt": "2026-10-28T12:00:00Z"
+  }
+]
