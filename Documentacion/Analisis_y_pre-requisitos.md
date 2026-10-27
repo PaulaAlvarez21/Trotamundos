@@ -40,6 +40,6 @@ El administrador y el equipo de datos se agrupan en el diagrama para simplificar
 ## Proceso de diseño ADD
 
 Las iteraciones del método ADD, sus vistas y decisiones se documentan en:
-- [`ADD_borrador_inicial.md`](./ADD_borrador_inicial.md) — proceso ADD.
+- [`ADD.md`](./ADD.md) — proceso ADD.
 - [`Diagramas/`](./Diagramas) — vistas arquitectónicas.
 - [`MADR/`](./MADR) — decisiones de diseño (formato MADR).
