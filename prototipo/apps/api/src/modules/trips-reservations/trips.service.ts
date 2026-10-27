@@ -11,8 +11,9 @@ export class TripsService {
 
   constructor() {
     // Escuchar eventos de ingesta
-    eventBus.subscribe(DomainEventType.RESERVATION_INGESTED, (event) => {
-      const { reservation } = event.payload;
+    eventBus.subscribe(DomainEventType.RESERVATION_INGESTED, (event: any) => {
+      const reservation = event?.payload?.reservation ?? event?.reservation ?? event?.payload;
+      if (!reservation) return;
       this.reservations.push(reservation);
       this.groupIntoTrip(reservation);
     });
