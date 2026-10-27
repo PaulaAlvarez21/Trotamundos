@@ -205,16 +205,19 @@ Asistente Virtual (este último en la Iteración 5).
 - *Interna (entre módulos):* interfaces de servicio; el detalle se difiere a iteraciones siguientes.
 - *Con datos:* repositorios/DAO; no se comparte el esquema entre módulos arbitrariamente.
 
-### Paso 6 — Bocetar vistas y registrar decisiones
+### Paso 6 — Bocetar las vistas
 
-**Vistas:**
+**Vistas bocetadas:**
 - [Vista de capas y módulos](./Diagramas/iter1_capas.md)
 - [Vista de componentes y conectores general](./Diagramas/iter1_cc_general.md)
 - [Vista de despliegue](./Diagramas/iter1_despliegue.md)
 
-**Decisiones registradas:**
-- [MADR-0001 Estilo de arquitectura general](./MADR/MADR-0001-estilo-arquitectura-general.md)
-- [MADR-0002 Descomposición en módulos de dominio](./MADR/MADR-0002-descomposicion-modulos-dominio.md)
+### Decisiones de diseño
+
+| MADR | Decisión | Drivers cubiertos |
+|---|---|---|
+| [MADR-0001](./MADR/MADR-0001-estilo-arquitectura-general.md) | Estilo de arquitectura general | QA-04, QA-05, QA-06, QA-09 |
+| [MADR-0002](./MADR/MADR-0002-descomposicion-modulos-dominio.md) | Descomposición en módulos de dominio | RF-01, RF-03, RF-04 |
 
 ### Paso 7 — Analizar el diseño y revisar el objetivo
 
@@ -268,17 +271,20 @@ DLQ (ver [vista C&C de ingesta](./Diagramas/iter2_cc_ingesta.md)).
 - *Contrato de evento:* evento `ReservaActualizada` publicado en la cola (payload normalizado).
 - *Externa:* webhook entrante y APIs de proveedores (traducidas por adaptadores).
 
-### Paso 6 — Bocetar vistas y registrar decisiones
+### Paso 6 — Bocetar las vistas
 
-**Vistas:**
+**Vistas bocetadas:**
 - [Vista de componentes y conectores de ingesta](./Diagramas/iter2_cc_ingesta.md)
 - [Secuencia: actualización externa ≤ 5 min](./Diagramas/iter2_secuencia_actualizacion.md)
 
-**Decisiones registradas:**
-- [MADR-0003 Enfoque de integración externa](./MADR/MADR-0003-enfoque-integracion-externa.md)
-- [MADR-0004 Procesamiento asíncrono con mensajería](./MADR/MADR-0004-procesamiento-asincrono-mensajeria.md)
-- [MADR-0005 Patrón adaptador/ACL](./MADR/MADR-0005-patron-adaptador-acl.md)
-- [MADR-0006 Acceso seguro al correo](./MADR/MADR-0006-acceso-seguro-correo.md)
+### Decisiones de diseño
+
+| MADR | Decisión | Drivers cubiertos |
+|---|---|---|
+| [MADR-0003](./MADR/MADR-0003-enfoque-integracion-externa.md) | Enfoque de integración externa | RF-03, RF-04, RF-07 |
+| [MADR-0004](./MADR/MADR-0004-procesamiento-asincrono-mensajeria.md) | Procesamiento asíncrono con mensajería | QA-03, QA-04 |
+| [MADR-0005](./MADR/MADR-0005-patron-adaptador-acl.md) | Patrón adaptador / capa anticorrupción | QA-06 |
+| [MADR-0006](./MADR/MADR-0006-acceso-seguro-correo.md) | Acceso seguro al correo | QA-08 |
 
 ### Paso 7 — Analizar el diseño y revisar el objetivo
 
@@ -332,17 +338,20 @@ Modelo de lectura desnormalizado, Réplica de lectura y CDN (ver
 - *API Móvil:* `GET /trips` con payload reducido y campos de localización.
 - *Contrato de datos:* modelo de lectura "reservas agrupadas por viaje".
 
-### Paso 6 — Bocetar vistas y registrar decisiones
+### Paso 6 — Bocetar las vistas
 
-**Vistas:**
+**Vistas bocetadas:**
 - [Vista de componentes y conectores de acceso](./Diagramas/iter3_cc_acceso.md)
 - [Secuencia: consulta web ≤ 800 ms](./Diagramas/iter3_secuencia_consulta_web.md)
 
-**Decisiones registradas:**
-- [MADR-0007 Arquitectura de presentación](./MADR/MADR-0007-arquitectura-presentacion.md)
-- [MADR-0008 Estrategia de caché y CDN](./MADR/MADR-0008-estrategia-cache-cdn.md)
-- [MADR-0009 Modelo de lectura y réplicas](./MADR/MADR-0009-read-model-replicas.md)
-- [MADR-0010 Internacionalización y multiregión](./MADR/MADR-0010-internacionalizacion-multiregion.md)
+### Decisiones de diseño
+
+| MADR | Decisión | Drivers cubiertos |
+|---|---|---|
+| [MADR-0007](./MADR/MADR-0007-arquitectura-presentacion.md) | Arquitectura de presentación con API dedicada por tipo de cliente | QA-01, QA-02 |
+| [MADR-0008](./MADR/MADR-0008-estrategia-cache-cdn.md) | Estrategia de caché y CDN | QA-01, QA-02, QA-05 |
+| [MADR-0009](./MADR/MADR-0009-read-model-replicas.md) | Modelo de lectura y réplicas | QA-01, QA-05 |
+| [MADR-0010](./MADR/MADR-0010-internacionalizacion-multiregion.md) | Internacionalización y despliegue multiregión | QA-10 |
 
 ### Paso 7 — Analizar el diseño y revisar el objetivo
 
@@ -393,16 +402,19 @@ analítico (ver [vista de seguridad y analítica](./Diagramas/iter4_cc_seguridad
 - *Autorización:* consulta `puedeVer(usuario, itinerario)`.
 - *Analítica:* contrato de evento de dominio y esquema de carga al almacén.
 
-### Paso 6 — Bocetar vistas y registrar decisiones
+### Paso 6 — Bocetar las vistas
 
-**Vistas:**
+**Vistas bocetadas:**
 - [Vista de componentes y conectores de seguridad y analítica](./Diagramas/iter4_cc_seguridad_analitica.md)
 - [Secuencia: acceso a itinerario compartido](./Diagramas/iter4_secuencia_itinerario_compartido.md)
 
-**Decisiones registradas:**
-- [MADR-0011 Autenticación y autorización](./MADR/MADR-0011-autenticacion-autorizacion.md)
-- [MADR-0012 Aislamiento de la analítica](./MADR/MADR-0012-aislamiento-analitica.md)
-- [MADR-0013 Cifrado y gestión de secretos](./MADR/MADR-0013-cifrado-gestion-secretos.md)
+### Decisiones de diseño
+
+| MADR | Decisión | Drivers cubiertos |
+|---|---|---|
+| [MADR-0011](./MADR/MADR-0011-autenticacion-autorizacion.md) | Autenticación delegada y autorización centralizada | QA-07, QA-08, RF-11 |
+| [MADR-0012](./MADR/MADR-0012-aislamiento-analitica.md) | Aislamiento de la analítica | RF-09 |
+| [MADR-0013](./MADR/MADR-0013-cifrado-gestion-secretos.md) | Cifrado de datos y gestión centralizada de secretos | QA-08 |
 
 ### Paso 7 — Analizar el diseño y revisar el objetivo
 
@@ -453,16 +465,19 @@ Acciones y adaptador de handoff (ver [vista C&C del chatbot](./Diagramas/iter5_c
 - *Intenciones/acciones:* `consultar_estado`, `solicitar_reprogramacion`, `escalar_a_agencia`.
 - *Handoff:* transferencia de contexto a la agencia (externa).
 
-### Paso 6 — Bocetar vistas y registrar decisiones
+### Paso 6 — Bocetar las vistas
 
-**Vistas:**
+**Vistas bocetadas:**
 - [Vista de componentes y conectores del chatbot](./Diagramas/iter5_cc_chatbot.md)
 - [Secuencia: conversación y handoff](./Diagramas/iter5_secuencia_handoff.md)
 
-**Decisiones registradas:**
-- [MADR-0014 Arquitectura del asistente virtual](./MADR/MADR-0014-arquitectura-asistente-virtual.md)
-- [MADR-0015 Integración del chatbot y handoff](./MADR/MADR-0015-integracion-chatbot-handoff.md)
-- [MADR-0016 Build vs. buy del NLU](./MADR/MADR-0016-build-vs-buy-nlu.md)
+### Decisiones de diseño
+
+| MADR | Decisión | Drivers cubiertos |
+|---|---|---|
+| [MADR-0014](./MADR/MADR-0014-arquitectura-asistente-virtual.md) | Arquitectura del asistente virtual | RF-06, RF-08 |
+| [MADR-0015](./MADR/MADR-0015-integracion-chatbot-handoff.md) | Integración del chatbot y handoff | RF-06, RF-08 |
+| [MADR-0016](./MADR/MADR-0016-build-vs-buy-nlu.md) | Build vs. buy del motor NLU | RF-06, QA-09 |
 
 ### Paso 7 — Analizar el diseño y revisar el objetivo
 
