@@ -1,0 +1,25 @@
+services:
+  api:
+    build: ./apps/api
+    container_name: trotamundos-api
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./apps/api/src:/app/src
+      - ./packages:/packages
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+
+  web:
+    build: ./apps/web
+    container_name: trotamundos-web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    volumes:
+      - ./apps/web/src:/app/src
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
