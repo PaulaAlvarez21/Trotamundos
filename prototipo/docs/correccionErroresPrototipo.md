@@ -168,3 +168,12 @@ Los adapters importaban con `import * as ... from '*.json'` y luego hacían `.fi
 
 - `apps/api/src/modules/ingestion/adapters/out/email-mock.adapter.ts`
 - `apps/api/src/modules/ingestion/adapters/out/provider-mock.adapter.ts`
+
+
+### 8) Imports de JSON en adapters (aplicado)
+Se corrigieron los imports con namespace import para compatibilidad con CommonJS/ts-node:
+
+- `apps/api/src/modules/ingestion/adapters/out/email-mock.adapter.ts`: `import * as emailsData from ...` con fallback a `default`
+- `apps/api/src/modules/ingestion/adapters/out/provider-mock.adapter.ts`: `import * as providersData from ...` con fallback a `default`
+
+Se aplicó el cambio para corregir el error al filtrar/retornar datos de los mocks JSON.
