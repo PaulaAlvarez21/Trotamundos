@@ -40,6 +40,21 @@ flowchart LR
     dw --> bi
 ```
 
+## Leyenda
+
+| Símbolo | Significado |
+|---|---|
+| `["Texto"]` **(rectángulo)** | Elemento con nombre: componente, módulo, servicio, cola o almacén según el límite que lo contiene |
+| `[("Texto")]` **(cilindro)** | Almacén de datos o de estado: base de datos, caché, almacén analítico, sesión o registro de idempotencia |
+| `(("Texto"))` **(círculo)** | Actor externo: persona o sistema situado fuera del límite del sistema |
+| `subgraph` **(caja/límite)** | Límite arquitectónico: capa, módulo, región o nodo de despliegue |
+| `-->` **(flecha simple)** | Flujo, llamada o publicación de mensaje en el sentido de la flecha |
+| `<-->` **(flecha doble)** | Interacción bidireccional (por ejemplo, lectura y escritura sobre un almacén) |
+| Flecha con texto sobre `-->` **(flecha etiquetada)** | Flujo con etiqueta: contenido, protocolo o condición del mensaje |
+
+**Símbolos presentes en esta vista:** rectángulo, cilindro, `subgraph`, `-->` y `<-->`. Los límites
+`SEG` y `ANA` agrupan las tácticas de seguridad y el aislamiento analítico, respectivamente.
+
 ## Catálogo de elementos
 
 #### Autenticación (OAuth2 / OIDC)

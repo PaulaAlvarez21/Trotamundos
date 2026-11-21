@@ -142,4 +142,69 @@ El profesor pidió comparaciones realistas y cifras con procedencia clara. La co
 
 ---
 
+## Corrección E — Leyendas de las vistas arquitectónicas
+
+**Archivos modificados:** las 12 vistas de `Documentacion/Diagramas/`.
+**Estado:** aplicada.
+
+### 1. Problema detectado
+
+El profesor pidió agregar leyendas a las vistas. Los diagramas tenían `Catálogo de elementos` (8
+vistas) o `Notas` (4 vistas de secuencia), que explican **qué hace** cada pieza, pero ninguno
+explicaba **qué significa cada forma gráfica**: rectángulos, cilindros, círculos, `subgraph`, los
+distintos tipos de flecha, `alt` o `Note over`.
+
+### 2. Solución aplicada
+
+Se agregó una sección `## Leyenda` justo debajo del bloque Mermaid, antes del Catálogo o las Notas:
+
+- **8 vistas flowchart** (`00_contexto`, `iter1_capas`, `iter1_cc_general`, `iter1_despliegue`,
+  `iter2_cc_ingesta`, `iter3_cc_acceso`, `iter4_cc_seguridad_analitica`, `iter5_cc_chatbot`):
+  leyenda idéntica con siete entradas — rectángulo (componente/módulo/servicio/cola/almacén según
+  el límite), cilindro (almacén de datos o estado), círculo doble (actor externo), `subgraph`
+  (límite arquitectónico), `-->` (flujo o llamada), `<-->` (interacción bidireccional) y flecha con
+  texto (flujo etiquetado).
+- **4 vistas de secuencia** (`iter2_secuencia_actualizacion`, `iter3_secuencia_consulta_web`,
+  `iter4_secuencia_itinerario_compartido`, `iter5_secuencia_handoff`): leyenda idéntica con seis
+  entradas — `participant`, `->>`, `-->>`, `alt/else/end`, `Note over` y `autonumber`.
+
+El significado de cada símbolo es el mismo en todas las vistas del mismo tipo. Como ninguna vista
+usa la tabla completa (solo `iter5_cc_chatbot` tiene los siete símbolos, y tres de las cuatro
+secuencias no tienen `alt`), se agregó debajo de cada tabla una línea
+**“Símbolos presentes en esta vista: ...”** con la lista exacta de los elementos que aparecen en ese
+diagrama. Así la leyenda sigue siendo uniforme en su significado y, al mismo tiempo, declara solo
+los elementos utilizados, que es lo que pide el enunciado de la corrección. Se chequeó con un
+recorrido de los 12 bloques Mermaid que la lista declarada coincide con los símbolos reales, sin
+símbolos faltantes ni sobrantes.
+
+Además, para que no haya duda sobre a qué figura se refiere cada notación, la columna `Símbolo` de
+las 12 tablas lleva el nombre de la figura entre paréntesis: `["Texto"]` **(rectángulo)**,
+`[("Texto")]` **(cilindro)**, `(("Texto"))` **(círculo)**, `subgraph` **(caja/límite)**, `-->`
+**(flecha simple)**, `<-->` **(flecha doble)** y la flecha etiquetada; en las secuencias,
+`participant` **(participante)**, `->>` **(flecha sólida)**, `-->>` **(flecha punteada)**,
+`alt/else/end` **(bloque condicional)**, `Note over` **(nota)** y `autonumber` **(numeración)**.
+Las 80 filas de las 12 leyendas fueron verificadas: todas incluyen la figura.
+
+Además, una línea breve aclara un caso particular de cada vista: los almacenes dibujados como
+rectángulos en `iter1_capas`, los `subgraph` como nodos de despliegue en `iter1_despliegue`, la cola
+y la DLQ como rectángulos en `iter2_cc_ingesta`, las etiquetas de flujo en `iter3_cc_acceso` y
+`iter5_cc_chatbot`, y los límites `SEG`/`ANA` en `iter4_cc_seguridad_analitica`.
+
+### 3. Errata y coherencia
+
+- Se corrigió **“Colea / Bus de mensajes” → “Cola / Bus de mensajes”** en el catálogo de
+  `iter1_cc_general.md`, para coincidir con el nombre usado en el propio diagrama, en
+  `iter2_cc_ingesta.md` y en MADR-0004.
+- Se verificó que los nombres de la leyenda y de los catálogos coincidan con los MADR y el ADD:
+  Cola/Bus, DLQ, BFF, caché, CDN, réplica de lectura, OAuth2/OIDC, RBAC, CDC/ETL y *handoff*.
+  No se encontraron discrepancias que exigieran cambiar los diagramas.
+
+### 4. Alcance
+
+No se modificó ningún bloque Mermaid: el diff de las 12 vistas es de 171 líneas agregadas y una
+solamente eliminada (la errata). No se tocaron el prototipo, el ADD ni los MADR. La corrección D
+queda pendiente para después y no se inició la F.
+
+---
+
 Las correcciones restantes se irán registrando aquí a medida que se realicen, una por una.

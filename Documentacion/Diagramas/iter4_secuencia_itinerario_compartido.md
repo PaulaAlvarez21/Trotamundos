@@ -35,6 +35,19 @@ sequenceDiagram
     end
 ```
 
+## Leyenda
+
+| Símbolo | Significado |
+|---|---|
+| `participant X as Nombre` **(participante)** | Participante de la secuencia: actor, componente o sistema externo |
+| `->>` **(flecha sólida)** | Mensaje o llamada enviada por el participante de origen |
+| `-->>` **(flecha punteada)** | Respuesta o retorno hacia el participante de origen |
+| `alt / else / end` **(bloque condicional)** | Alternativa condicional: se ejecuta solo la rama que cumple la condición |
+| `Note over` **(nota)** | Anotación del escenario (restricción o regla), no un mensaje |
+| `autonumber` **(numeración)** | Numeración de los pasos para seguir el orden del flujo |
+
+**Símbolos presentes en esta vista:** `participant`, `->>`, `-->>`, `alt/else/end` y `autonumber`.
+
 ## Notas
 
 - La autorización se resuelve de forma centralizada y auditable.
