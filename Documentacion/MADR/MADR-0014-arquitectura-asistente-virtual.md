@@ -28,7 +28,6 @@ se estructura el módulo dentro de la arquitectura multitier.
   ejecutor de acciones (architectural pattern de aplicación conversacional).
 - **Opción B:** **Reglas codificadas** sin NLU (respuestas por coincidencia de palabras clave).
 - **Opción C:** **Árbol de decisión** guiado por menús.
-- **Opción D:** **Integración directa con un LLM** sin orquestación ni control de acciones.
 
 ## Resultado de la decisión
 
@@ -58,11 +57,6 @@ alterar la arquitectura general.
 - Positivo: flujo controlado y simple.
 - Negativo: rígido; el usuario debe navegar menús; no maneja bien problemas abiertos.
 
-### Opción D — LLM directo sin orquestación
-- Positivo: mínima estructura; respuestas naturales.
-- Negativo: sin control de acciones ni trazabilidad; riesgo de ejecutar operaciones indebidas; sin
-  separación de responsabilidades.
-
 ## Vistas relacionadas
 
 - [Iteración 5 — Vista de componentes y conectores del chatbot](../Diagramas/iter5_cc_chatbot.md)
@@ -72,3 +66,7 @@ alterar la arquitectura general.
 
 - **Inferencia/decision consciente:** la consigna no prescribe una arquitectura de chatbot. Se
   propone una estructura en capas coherente con la bibliografía y con el resto del sistema.
+- **Coherencia con el prototipo:** la opción elegida se implementa con pasarela, adaptador de NLU,
+  orquestador y handoff (`assistant.service.ts`). El adaptador usa reglas por palabras clave
+  (`nlu-rule-based.adapter.ts`) para demostrar el puerto sin costo, según `PROTOTYPE_NOTES.md`; eso
+  no cambia la decisión arquitectónica ni agrega una alternativa nueva.

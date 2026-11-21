@@ -68,5 +68,8 @@ combinación que ataca tanto el arranque como las consultas recurrentes.
 
 ## Notas e inferencias
 
-- **Inferencia/decision consciente:** la consigna no especifica TTL ni tecnología de caché. Se dejan
-  como parámetros configurables; el TTL debe equilibrar frescura (QA-03) y rendimiento (QA-01).
+- **Inferencia/decision consciente y procedencia:** la consigna no especifica TTL ni tecnología de
+  caché; 800 ms (QA-01), 1,4 s (QA-02) y 5 min (QA-03) son cifras del enunciado, no medidas. El TTL
+  se deja como parámetro configurable y debe estar acotado por la frescura de QA-03 (no superar los
+  5 min de ventana) sin comprometer QA-01; esa evaluación se registró en `ADD.md`, Paso 7 de las
+  iteraciones 2 y 3. El prototipo no implementa caché/CDN real.

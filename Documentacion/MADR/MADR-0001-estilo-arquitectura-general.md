@@ -77,8 +77,9 @@ suficiente para el prototipo.
 
 ### Opción E — Cliente-servidor de 2 capas
 - Positivo: muy simple conceptualmente.
-- Negativo: acopla la lógica al cliente o a la base; no soporta bien reglas de negocio compartidas,
-  seguridad ni escalabilidad global. Se descarta.
+- Negativo: acopla la lógica al cliente o a la base. Con 2 M de usuarios activos semanales y picos
+  (QA-05), la base quedaría como punto único de escalado; además, QA-07 y QA-08 exigen reglas de
+  seguridad compartidas que no conviene dejar en el cliente. Se descarta.
 
 ## Vistas relacionadas
 
@@ -94,3 +95,7 @@ suficiente para el prototipo.
   restricciones de la *startup*, no en un requisito textual.
 - El estilo multitier y las "capas" no son excluyentes: el multitier describe la separación física
   (tiers) y las capas describen la organización lógica interna del tier de aplicación.
+- **Procedencia de cifras:** 15 M de cuentas, 2 M de usuarios activos semanales y ≤ 5 min/mes son
+  requisitos del enunciado. La conversión de 5 min/mes a ≈ 99,988 % de disponibilidad (con el
+  supuesto explícito de mes de 30 días) se registró en `ADD.md`, Paso 7 de la Iteración 1; aquí no
+  se trata como resultado medido.

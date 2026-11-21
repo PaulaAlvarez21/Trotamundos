@@ -72,5 +72,6 @@ proveedores ofrecen.
 
 - **Inferencia/decision consciente:** la consigna no indica qué proveedores ofrecen webhooks. Se
   asume que algunos sí y otros no; por eso el diseño cubre ambos.
-- La periodicidad de polling y la política de reintentos son parámetros configurables derivados del
-  límite de 5 minutos, no valores dados por la consigna.
+- **Procedencia de cifras:** el límite de 5 minutos de QA-03 es un requisito del enunciado, no un
+  dato medido. La periodicidad de polling y la política de reintentos son parámetros configurables
+  derivados de ese límite; su evaluación se registró en `ADD.md`, Paso 7 de la Iteración 2.

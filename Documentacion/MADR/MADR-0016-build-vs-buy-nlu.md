@@ -27,7 +27,6 @@ niveles de control. La decisión condiciona el esfuerzo inicial del equipo y la 
   comprensión de lenguaje de un proveedor de nube o un LLM con API).
 - **Opción B:** **Construir**: entrenar y operar un **modelo propio** *in-house*.
 - **Opción C:** **Librería open source auto-hospedada** (framework de NLU).
-- **Opción D:** **Sin NLU**: clasificador por reglas/expresiones.
 
 ## Resultado de la decisión
 
@@ -56,10 +55,6 @@ evita el costo de entrenar y operar modelos; el encapsulamiento permite migrar a
 - Positivo: control de datos; sin costo de licencia por uso.
 - Negativo: hay que desplegar, ajustar y operar; esfuerzo mayor que comprar.
 
-### Opción D — Sin NLU (reglas)
-- Positivo: simple, determinista, sin dependencias.
-- Negativo: frágil ante el lenguaje natural; mala escalabilidad del mantenimiento; experiencia pobre.
-
 ## Vistas relacionadas
 
 - [Iteración 5 — Vista de componentes y conectores del chatbot](../Diagramas/iter5_cc_chatbot.md)
@@ -70,3 +65,8 @@ evita el costo de entrenar y operar modelos; el encapsulamiento permite migrar a
   comprar. Se recomienda comprar por encaje con las restricciones de la *startup*, y se deja la
   decisión abierta y aislada tras una interfaz para poder revertirla. La elección final requiere
   validar costos, privacidad y precisión (queda en el *backlog*).
+- **Coherencia con el prototipo:** la decisión sigue siendo comprar un servicio gestionado; el
+  prototipo usa un clasificador de reglas (`nlu-rule-based.adapter.ts`) solo como sustituto para
+  demostrar el contrato del puerto sin costo, según `PROTOTYPE_NOTES.md`. No se agregó una opción
+  "sin NLU": ya está cubierta en MADR-0014 y en la evaluación del Paso 7 de la Iteración 5 del
+  `ADD.md`.

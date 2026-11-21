@@ -74,3 +74,6 @@ para clientes heterogéneos.
 - **Inferencia/decision consciente:** la consigna no prescribe BFF ni GraphQL. Se elige BFF por
   alinearse con los objetivos de rendimiento y con la bibliografía (patrón de partición de interfaz);
   GraphQL queda como alternativa evaluada.
+- **Procedencia de cifras:** 800 ms (QA-01) y 1,4 s (QA-02) son requisitos del enunciado. La
+  diferencia de 600 ms a favor del presupuesto móvil se registró en `ADD.md`, Paso 7 de la Iteración
+  3, como argumento para la API dedicada; no es una medida del prototipo.

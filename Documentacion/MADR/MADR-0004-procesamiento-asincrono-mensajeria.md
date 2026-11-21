@@ -28,13 +28,13 @@ y expondría al sistema a picos que degradarían el rendimiento y la disponibili
   *Half-Sync/Half-Async*).
 - **Opción B:** Procesamiento **síncrono** dentro de la petición de recepción.
 - **Opción C:** Procesamiento por **lotes programados** (*batch*).
-- **Opción D:** Llamadas **directas** entre el receptor y el servicio de reservas.
 
 ## Resultado de la decisión
 
 Se elige la **Opción A**. La cola/bus desacopla productores de consumidores, absorbe los picos
 (buffer), permite reintentos e idempotencia y evita que una caída del consumidor pierda eventos
-(QA-04). El procesamiento asíncrono sigue holgadamente dentro de la ventana de 5 minutos (QA-03).
+(QA-04). El presupuesto de 300 s de QA-03 no está desglosado entre etapas ni medido (ver `ADD.md`,
+Paso 7 de la Iteración 2); la cola favorece cumplirlo, pero no lo garantiza por sí sola.
 
 ## Consecuencias
 
@@ -59,10 +59,6 @@ Se elige la **Opción A**. La cola/bus desacopla productores de consumidores, ab
 - Negativo: la latencia puede superar la ventana de 5 minutos según la frecuencia; poca reacción en
   tiempo real.
 
-### Opción D — Llamadas directas
-- Positivo: mínima infraestructura.
-- Negativo: acoplamiento fuerte y punto único de fallo; no soporta picos.
-
 ## Vistas relacionadas
 
 - [Iteración 2 — Vista de componentes y conectores de ingesta](../Diagramas/iter2_cc_ingesta.md)
@@ -73,3 +69,7 @@ Se elige la **Opción A**. La cola/bus desacopla productores de consumidores, ab
 
 - **Inferencia/decision consciente:** la consigna no menciona mensajería. Es una decisión de diseño
   derivada de QA-05 y QA-04 (tácticas de *introducir concurrencia* y *mantener múltiples copias*).
+- **Procedencia de cifras y límite del prototipo:** los 5 minutos de QA-03 son un requisito del
+  enunciado (300 s), no una medición. El prototipo usa `EventEmitter` en memoria como sustituto del
+  bus (ver `PROTOTYPE_NOTES.md`), por lo que no mide ese plazo; la evaluación se registró en
+  `ADD.md`, Paso 7 de la Iteración 2.

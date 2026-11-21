@@ -109,4 +109,37 @@ La evaluación queda alineada con la corrección A: los QA con mayor riesgo del 
 
 ---
 
+## Corrección C — Justificación de los MADR existentes
+
+**Archivos modificados:** `Documentacion/MADR/MADR-0001`, `0003`, `0004`, `0007`, `0008`, `0014` y `0016`.
+**Estado:** aplicada.
+
+### 1. Problema detectado
+
+Las decisiones estaban bien relacionadas con los drivers, pero las cifras aparecían sin procedencia y varias alternativas descartadas parecían de relleno: la Opción D de MADR-0004 duplicaba la Opción B, la Opción D de MADR-0014 era un escenario irreal y la Opción D de MADR-0016 repetía la Opción B de MADR-0014. Además, MADR-0004 afirmaba que el procesamiento asíncrono estaba “holgadamente dentro de los 5 minutos” sin desglose ni medición.
+
+### 2. Por qué se corrigió
+
+El profesor pidió comparaciones realistas y cifras con procedencia clara. La corrección no rehace los MADR: solo quita opciones que no aportaban y explica de dónde salen los números que ya estaban. No se inventaron nuevas alternativas, tecnologías ni resultados.
+
+### 3. Solución aplicada
+
+- **Alternativas eliminadas** (en `Opciones consideradas` y en `Pros y contras`):
+  - MADR-0004, Opción D “llamadas directas”: era equivalente a la Opción B síncrona.
+  - MADR-0014, Opción D “LLM directo sin orquestación”: sin control de acciones ni trazabilidad, no era una opción arquitectónica defendible.
+  - MADR-0016, Opción D “sin NLU”: duplicaba la Opción B de MADR-0014 y se confundía con el adaptador de reglas del prototipo.
+- **MADR-0001:** se mantuvo la Opción E (2 capas), pero su contra ahora usa datos del enunciado: con 2 M de usuarios activos y picos (QA-05) la base sería punto único, y QA-07/QA-08 requieren seguridad compartida.
+- **MADR-0004:** se reemplazó “holgadamente dentro de los 5 minutos” por “300 s sin desglose ni medición”, citando el Paso 7 de la Iteración 2 del ADD.
+- **MADR-0008:** el TTL queda como parámetro acotado por la frescura de QA-03 (no superar los 5 min), no como valor medido.
+- Se agregó una línea de **Procedencia de cifras** en MADR-0001, 0003, 0004, 0007 y 0008: todas las cifras son del enunciado; los cálculos se citan del ADD y no se repiten.
+
+### 4. Coherencia con el ADD y el prototipo
+
+- MADR-0004: el prototipo usa `EventEmitter` en memoria como sustituto del bus, según `PROTOTYPE_NOTES.md`; por eso se aclara que no mide el plazo de 5 min.
+- MADR-0014: el prototipo implementa la Opción A (pasarela + NLU + orquestador + handoff) en `assistant.service.ts`, con un adaptador de reglas en `nlu-rule-based.adapter.ts`. La aclaración evita confundir ese adaptador con una alternativa nueva.
+- MADR-0016: la decisión sigue siendo “comprar servicio gestionado”; el clasificador de reglas del prototipo se registra como sustituto para demostrar el puerto, tal como ya decía `PROTOTYPE_NOTES.md`.
+- Ningún archivo del prototipo fue modificado.
+
+---
+
 Las correcciones restantes se irán registrando aquí a medida que se realicen, una por una.
