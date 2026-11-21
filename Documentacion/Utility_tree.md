@@ -2,7 +2,7 @@
 
 **Sistema:** Trotamundos — plataforma de gestión de viajes y reservas (web y móvil), con integración de proveedores externos (aerolíneas, hoteles, arrendadoras), proveedores de correo y redes sociales.
 
-**Entrada:** escenarios QA-01 a QA-10 definidos en [`Escenarios_de_atributos_de_calidad.md`](./Escenarios_de_atributos_de_calidad.md) (Modo 1) y corregidos en [`Documentacion/correccionEscenariosTrotamundosV2.md`](./Documentacion/correccionEscenariosTrotamundosV2.md). Este documento aplica el Modo 3 (sección 34): verifica cada atributo contra su General Scenario, organiza el árbol Utility → atributo → preocupación → escenario y prioriza cada hoja.
+**Entrada:** escenarios QA-01 a QA-10 definidos en [`Escenarios_de_atributos_de_calidad.md`](./Escenarios_de_atributos_de_calidad.md) (Modo 1) y corregidos en [`correccionEscenariosTrotamundosV2.md`](./correccionEscenariosTrotamundosV2.md). Este documento aplica el Modo 3 (sección 34): verifica cada atributo contra su General Scenario, organiza el árbol Utility → atributo → preocupación → escenario y prioriza cada hoja.
 
 > **Fuente única.** Este documento consolida el árbol de utilidad del equipo en un solo archivo; reemplaza a los borradores previos `arbol-utilidad.md` y `Documentacion/arbol-utilidad-trotamundos.md`.
 
@@ -34,44 +34,46 @@
 
 ## 2. Árbol de utilidad
 
+Cada hoja se etiqueta con `(Importancia, Dificultad/riesgo)` en escala **H** (alta), **M** (media) y **L** (baja). El criterio de cada eje y el orden resultante se explican en la sección 4.
+
 ```
 UTILITY
 ├── Performance
 │   ├── Latencia de respuesta web
-│   │   └── (H, No especificado) QA-01: viajero en navegador web solicita consultar
+│   │   └── (H, M) QA-01: viajero en navegador web solicita consultar
 │   │       sus viajes y reservas; tiempo de respuesta de 800 ms.
 │   ├── Primer contenido en móvil
-│   │   └── (H, No especificado) QA-02: viajero en dispositivo móvil abre la
+│   │   └── (H, L) QA-02: viajero en dispositivo móvil abre la
 │   │       aplicación; First Contentful Paint inferior a 1,4 s.
 │   └── Actualización de reservas externas
-│       └── (H, No especificado) QA-03: proveedor externo genera una actualización
+│       └── (H, H) QA-03: proveedor externo genera una actualización
 │           de reserva; se presenta en la aplicación dentro de los 5 minutos.
 ├── Availability
 │   └── Indisponibilidad no planificada
-│       └── (H, No especificado) QA-04: fallo no planificado afecta al servicio;
+│       └── (H, H) QA-04: fallo no planificado afecta al servicio;
 │           máximo cinco minutos de inactividad no planificada por mes.
 ├── Modifiability
 │   ├── Capacidad de la plataforma
-│   │   └── (H, No especificado) QA-05: dimensionar la plataforma para 15 M de
+│   │   └── (H, H) QA-05: dimensionar la plataforma para 15 M de
 │   │       cuentas, 2 M de usuarios activos semanales y picos de tráfico.
 │   └── Nuevos medios de transporte
-│       └── (H, No especificado) QA-09: desarrollador incorpora trenes o
+│       └── (M, M) QA-09: desarrollador incorpora trenes o
 │           autobuses manteniendo lo existente.
 ├── Interoperability
 │   └── Intercambio con proveedores externos
-│       └── (H, No especificado) QA-06: proveedor de viajes, correo o servicio de
+│       └── (H, H) QA-06: proveedor de viajes, correo o servicio de
 │           compartición intercambia datos con Trotamundos mediante interfaz
 │           compatible.
 ├── Security
 │   ├── Acceso a itinerarios compartidos
-│   │   └── (H, No especificado) QA-07: usuario intenta visualizar un itinerario
+│   │   └── (H, M) QA-07: usuario intenta visualizar un itinerario
 │   │       compartido; se verifica autorización antes de entregarlo.
 │   └── Privacidad del correo integrado
-│       └── (H, No especificado) QA-08: escaneo de correos para detectar reservas;
+│       └── (H, M) QA-08: escaneo de correos para detectar reservas;
 │           acceso únicamente a los mensajes autorizados.
 └── Usability
     └── Interfaz rica e internacionalización
-        └── (H, No especificado) QA-10: viajero consulta y gestiona sus viajes en
+        └── (M, M) QA-10: viajero consulta y gestiona sus viajes en
             web o móvil con capacidades nativas como GPS.
 ```
 
@@ -79,7 +81,7 @@ UTILITY
 
 ## 3. Escenarios (hojas) priorizados
 
-### Hoja QA-01 — Performance / Latencia de respuesta web — Prioridad (H, No especificado)
+### Hoja QA-01 — Performance / Latencia de respuesta web — Prioridad (H, M)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -90,7 +92,7 @@ UTILITY
 | Response | El sistema procesa la consulta y presenta los viajes y reservas (**procesar el evento y responder**) |
 | Response Measure | Tiempo de respuesta web de 800 ms (**latency**). El enunciado no precisa si es máximo, promedio o percentil (No especificado) |
 
-### Hoja QA-02 — Performance / Primer contenido en móvil — Prioridad (H, No especificado)
+### Hoja QA-02 — Performance / Primer contenido en móvil — Prioridad (H, L)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -101,7 +103,7 @@ UTILITY
 | Response | La interfaz presenta el primer contenido visible (**procesar el evento y responder**) |
 | Response Measure | First Contentful Paint (FCP) inferior a 1,4 segundos (**latency**) |
 
-### Hoja QA-03 — Performance / Actualización de reservas externas — Prioridad (H, No especificado)
+### Hoja QA-03 — Performance / Actualización de reservas externas — Prioridad (H, H)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -112,7 +114,7 @@ UTILITY
 | Response | Trotamundos procesa el cambio y lo presenta en la aplicación (**procesar el evento y responder**) |
 | Response Measure | El cambio debe presentarse dentro de los cinco minutos posteriores a su generación por la fuente externa (**deadline**) |
 
-### Hoja QA-04 — Availability / Indisponibilidad no planificada — Prioridad (H, No especificado)
+### Hoja QA-04 — Availability / Indisponibilidad no planificada — Prioridad (H, H)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -123,7 +125,7 @@ UTILITY
 | Response | El sistema detecta, previene o se recupera del fallo y mantiene o restablece el servicio conforme a su especificación (**detectar, prevenir o recuperarse del fault**) |
 | Response Measure | Máximo de cinco minutos de inactividad no planificada por mes (**medida de disponibilidad**). No se especifica cómo se contabilizan interrupciones parciales, si el cálculo es global o por región, ni el tratamiento de la indisponibilidad de un proveedor externo (No especificado) |
 
-### Hoja QA-05 — Modifiability / Capacidad de la plataforma — Prioridad (H, No especificado)
+### Hoja QA-05 — Modifiability / Capacidad de la plataforma — Prioridad (H, H)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -134,7 +136,7 @@ UTILITY
 | Response | El equipo realiza, prueba y despliega la ampliación de capacidad manteniendo operativo el servicio (**realizar, probar y desplegar la modificación**) |
 | Response Measure | No especificado (**costo del cambio**: esfuerzo, tiempo, cantidad/complejidad de artifacts afectados, efectos sobre otros atributos y defectos introducidos). Las cifras de 15 M cuentas y 2 M usuarios activos semanales son el objetivo de capacidad del cambio, no el presupuesto del mismo |
 
-### Hoja QA-06 — Interoperability / Intercambio con proveedores externos — Prioridad (H, No especificado)
+### Hoja QA-06 — Interoperability / Intercambio con proveedores externos — Prioridad (H, H)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -145,7 +147,7 @@ UTILITY
 | Response | Trotamundos intercambia los datos pertinentes y los interpreta de acuerdo con su modelo interno (**lograr la colaboración/intercambio correcto entre los elementos**) |
 | Response Measure | No especificado (**esfuerzo/tiempo de integración y efectos sobre otros atributos**). El enunciado exige APIs estándar, pero no fija métrica cuantitativa de éxito, latencia ni tiempo de incorporación de proveedores. [INFERENCIA] Pruebas de contrato y medidas de interoperabilidad son propuestas de diseño, no valores de la consigna |
 
-### Hoja QA-07 — Security / Acceso a itinerarios compartidos — Prioridad (H, No especificado)
+### Hoja QA-07 — Security / Acceso a itinerarios compartidos — Prioridad (H, M)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -156,7 +158,7 @@ UTILITY
 | Response | El sistema verifica los permisos y entrega el itinerario únicamente si el solicitante está autorizado; de lo contrario, rechaza el acceso (**proteger confidentiality; resistir el acceso**) |
 | Response Measure | No especificado (**precisión de detección / accesos indebidos**). Condición observable del enunciado: solo las personas específicamente designadas pueden visualizar el itinerario |
 
-### Hoja QA-08 — Security / Privacidad del correo integrado — Prioridad (H, No especificado)
+### Hoja QA-08 — Security / Privacidad del correo integrado — Prioridad (H, M)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -167,7 +169,7 @@ UTILITY
 | Response | El sistema accede únicamente a los mensajes autorizados y procesa la información pertinente para identificar reservas, protegiendo su confidencialidad e integridad (**proteger confidentiality e integrity**) |
 | Response Measure | No especificado (**recursos asegurados / precisión de detección**). El enunciado exige acceso seguro y autorizado, sin métrica cuantitativa. [INFERENCIA] Limitar permisos al mínimo, permitir revocar el acceso y no exponer credenciales son medidas de diseño propuestas, no valores de la consigna |
 
-### Hoja QA-09 — Modifiability / Nuevos medios de transporte — Prioridad (H, No especificado)
+### Hoja QA-09 — Modifiability / Nuevos medios de transporte — Prioridad (M, M)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -178,7 +180,7 @@ UTILITY
 | Response | El desarrollador incorpora el nuevo medio de transporte manteniendo las funcionalidades existentes que no necesitan cambiar (**realizar, probar y desplegar la modificación**) |
 | Response Measure | No especificado (**costo del cambio**: artifacts afectados, esfuerzo, tiempo, efectos sobre otros atributos). El enunciado exige prever la incorporación futura, pero no fija un presupuesto máximo de esfuerzo o tiempo. [INFERENCIA] La localización de los cambios es una decisión arquitectónica propuesta, no una garantía textual |
 
-### Hoja QA-10 — Usability / Interfaz rica e internacionalización — Prioridad (H, No especificado)
+### Hoja QA-10 — Usability / Interfaz rica e internacionalización — Prioridad (M, M)
 
 | Parte | Escenario concreto |
 |---|---|
@@ -191,69 +193,80 @@ UTILITY
 
 ---
 
-## 4. Justificación de prioridades
+## 4. Criterio de priorización y justificación
+
+La escala **H** (alta), **M** (media) y **L** (baja) se aplica por separado a dos ejes:
+
+| Eje | Procedencia | Regla |
+|---|---|---|
+| **Importancia** | Enunciado (`enunciadoTPE.md`, sección de requerimientos de atributos de calidad) | **H** cuando el enunciado formula una restricción verificable presente: plazo numérico (QA-01, QA-02, QA-03), umbral mensual y alcance global (QA-04), cifras de capacidad (QA-05), carácter "imperativo" (QA-06) o exigencia explícita sobre datos personales (QA-07, QA-08). **M** cuando la hoja expresa una preparación a futuro sin medida verificable (QA-09, QA-10). No hay hojas **L**: el enunciado declara críticos los siete atributos. |
+| **Dificultad / riesgo técnico** | Características del sistema derivadas del enunciado y estado del ADD | **H** cuando la satisfacción depende de sistemas externos heterogéneos, de la escala global con picos o de un driver aún parcial en el backlog; **M** cuando existen tácticas conocidas pero con compromisos por resolver; **L** cuando la táctica es madura, no depende de externos y el enunciado no describe condiciones adversas. |
+
+**Orden resultante:** se prioriza primero por *importancia* y, dentro de igual importancia, por *dificultad/riesgo* (H > M > L), porque entre hojas igual de críticas requieren más atención las que presentan mayor riesgo. Queda: QA-04, QA-03, QA-05, QA-06 (H,H); QA-01, QA-07, QA-08 (H,M); QA-02 (H,L); QA-09, QA-10 (M,M).
+
+**Coherencia con el ADD:** los cuatro escenarios (H,H) son los que el ADD aborda desde las iteraciones 1 y 2 — QA-04 y QA-05 figuran como *Parcial* en el backlog (`ADD.md` §9.1) y QA-03 y QA-06 dependen de proveedores externos —; los (M,M) se refinan en la iteración 5. La dificultad no se infiere del conocimiento general del atributo, sino de datos textuales del enunciado y del estado de las decisiones ya registradas.
 
 **QA-01 — Performance / Latencia web**
 
-> **Importancia H:** el enunciado califica explícitamente a todos los atributos listados como "atributos de calidad críticos identificados en la especificación inicial", lo que constituye una indicación explícita de criticidad para este y los demás escenarios del árbol.
+> **Importancia H:** el enunciado fija una restricción verificable presente ("el tiempo de respuesta desde web debe ser de 800 ms") dentro del listado de atributos críticos.
 >
-> **Dificultad No especificado:** el enunciado no proporciona evidencia de complejidad técnica para alcanzar los 800 ms. Faltaría información sobre la arquitectura prevista, la carga esperada o restricciones técnicas.
+> **Dificultad M:** existen tácticas conocidas (caché, modelo de lectura, CDN), pero queda por resolver el compromiso entre frescura y TTL y el enunciado no aclara si 800 ms es máximo o percentil; el ADD lo trata en la iteración 3.
 
 **QA-02 — Performance / Primer contenido en móvil**
 
-> **Importancia H:** el escenario está incluido en el listado que el enunciado califica como "atributos de calidad críticos identificados en la especificación inicial".
+> **Importancia H:** el enunciado fija una restricción verificable presente ("First Contentful Paint ... en menos de 1,4 segundos") dentro del listado de atributos críticos.
 >
-> **Dificultad No especificado:** el enunciado no describe la complejidad técnica de lograr un First Contentful Paint inferior a 1,4 s; la métrica completa el Response Measure, no la dificultad.
+> **Dificultad L:** se cubre con una táctica madura y local (CDN + payload reducido), sin dependencia de sistemas externos; el enunciado no describe red o dispositivo adversos. El ADD lo resuelve en la iteración 3.
 
 **QA-03 — Performance / Actualización de reservas externas**
 
-> **Importancia H:** el escenario pertenece al listado de "atributos de calidad críticos" declarado por el enunciado.
+> **Importancia H:** el enunciado fija un plazo verificable de cinco minutos para presentar actualizaciones externas, dentro del listado de atributos críticos.
 >
-> **Dificultad No especificado:** el enunciado no aporta evidencia de complejidad técnica sobre la integración ni el procesamiento de actualizaciones externas dentro del deadline de cinco minutos.
+> **Dificultad H:** depende de proveedores externos con capacidades heterogéneas (webhooks/polling) y del pipeline de ingesta; el ADD le dedica la iteración 2 y aún quedan por definir periodicidad y reintentos (MADR-0003 y MADR-0004).
 
 **QA-04 — Availability / Indisponibilidad no planificada**
 
-> **Importancia H:** además del calificativo general de "críticos", el enunciado exige explícitamente que el sistema "debe ser accesible en todo momento", lo que refuerza la criticidad del requisito de disponibilidad.
+> **Importancia H:** el enunciado exige que el sistema sea "accesible en todo momento" con un tope de cinco minutos de inactividad no planificada por mes y alcance global.
 >
-> **Dificultad No especificado:** el objetivo de cinco minutos por mes completa el Response Measure; el enunciado no declara complejidad técnica explícita para lograrlo. Faltaría evidencia sobre restricciones o el esfuerzo estimado.
+> **Dificultad H:** es el driver con mayor riesgo: aparece en las iteraciones 1, 2 y 4 del ADD y sigue **Parcial** en el backlog, además de no estar definida la contabilización de interrupciones parciales ni por región (`ADD.md` §11.3).
 
 **QA-05 — Modifiability / Capacidad de la plataforma**
 
-> **Importancia H:** el requisito integra el listado de "atributos de calidad críticos" del enunciado, que fija cifras de negocio explícitas (15 M de cuentas, 2 M de usuarios activos semanales).
+> **Importancia H:** el enunciado fija cifras de capacidad explícitas (15 M de cuentas, 2 M de usuarios activos semanales) y picos ante disrupciones, dentro del listado de atributos críticos.
 >
-> **Dificultad No especificado:** el enunciado no describe la complejidad técnica de la ampliación de capacidad; las cifras son el objetivo del cambio, no evidencia de dificultad.
+> **Dificultad H:** el ADD lo marca **Parcial** (iteraciones 1 y 3) y la consigna no entrega solicitudes por segundo ni distribución del pico, por lo que no puede dimensionarse con los datos disponibles.
 
 **QA-06 — Interoperability / Intercambio con proveedores externos**
 
 > **Importancia H:** el enunciado califica la integración como "imperativa" ("Es imperativa una integración fluida con intercambios de aerolíneas, hoteles y arrendadoras"), además del calificativo general de "críticos".
 >
-> **Dificultad No especificado:** el enunciado no fija evidencia de complejidad técnica; no describe la cantidad de proveedores, contratos ni restricciones que permitan estimar H/M/L.
+> **Dificultad H:** los contratos y capacidades de los proveedores están fuera del control del sistema y son heterogéneos; el ADD la aborda en las iteraciones 1, 2 y 5 y requiere adaptadores/ACL y gobernanza de contratos aún incompleta (MADR-0005, MADR-0015).
 
 **QA-07 — Security / Acceso a itinerarios compartidos**
 
 > **Importancia H:** el escenario pertenece al listado de "atributos de calidad críticos" y responde a la exigencia de "asegurar que solo personas específicas designadas puedan visualizarlos".
 >
-> **Dificultad No especificado:** el enunciado no proporciona evidencia de complejidad técnica del mecanismo de autorización; faltaría información sobre los vectores de acceso y las restricciones técnicas previstas.
+> **Dificultad M:** existen tácticas conocidas (autenticación delegada, autorización centralizada con RBAC y reglas por itinerario), pero queda por definir la gobernanza de esas reglas y su integración con la compartición; el ADD lo trata en la iteración 4.
 
 **QA-08 — Security / Privacidad del correo integrado**
 
 > **Importancia H:** el enunciado declara que el sistema procesa información personal y que "debe garantizarse el acceso seguro y autorizado a los correos", además del calificativo general de "críticos".
 >
-> **Dificultad No especificado:** el enunciado no describe la complejidad técnica de la integración segura con proveedores de correo; las medidas de diseño son inferencias nuestras, no evidencia del enunciado.
+> **Dificultad M:** hay tácticas maduras (OAuth2 con permisos mínimos, cifrado y revocación), pero la integración depende del proveedor de correo y de la custodia de tokens; el ADD la cubre en las iteraciones 2 y 4 (MADR-0006, MADR-0013).
 
 **QA-09 — Modifiability / Nuevos medios de transporte**
 
-> **Importancia H:** el escenario está cubierto por el calificativo general de "atributos de calidad críticos" y por la exigencia de que "la arquitectura debe prever la integración futura de otros medios de transporte".
+> **Importancia M:** el enunciado lo formula como previsión de integración futura ("la arquitectura debe prever la integración futura de otros medios de transporte"), sin fijar una medida verificable de esfuerzo o tiempo, a diferencia de los plazos y cifras de las otras hojas.
 >
-> **Dificultad No especificado:** el enunciado no fija presupuesto de esfuerzo ni describe complejidad técnica; la localización de cambios es una inferencia de diseño, no evidencia de dificultad.
+> **Dificultad M:** la modificabilidad localizada es una táctica conocida (módulos de dominio + adaptadores), pero figuran como *Parcial* en el backlog (`ADD.md` §9.1) y la incorporación del chatbot en la iteración 5 muestra que el cambio no es trivial.
 
 **QA-10 — Usability / Interfaz rica e internacionalización**
 
-> **Importancia H:** el enunciado exige explícitamente "una interfaz rica" y la preparación arquitectónica para el mercado internacional, dentro del listado de "atributos de calidad críticos".
+> **Importancia M:** el enunciado pide "una interfaz rica" y preparación arquitectónica para el mercado internacional, pero no fija métricas de usabilidad ni de localización: es una preparación a futuro, no una restricción verificable como las de QA-01 a QA-08.
 >
-> **Dificultad No especificado:** el enunciado no aporta evidencia de complejidad técnica de la usabilidad ni de la localización; no fija métricas ni describe restricciones que permitan estimar H/M/L.
+> **Dificultad M:** la i18n y la CDN son tácticas conocidas, pero la hoja cubre dos preocupaciones —interfaz/usabilidad y preparación multirregión— y esta última exige coordinación entre regiones (MADR-0010); el ADD la trata en las iteraciones 3 y 5. No se separa en un escenario nuevo para conservar los 10 QA y no alterar el ADD.
 
-**Nota sobre la priorización:** la escala H/M/L y los criterios de importancia y dificultad provienen de la sección 19.4 del libro. La importancia de todas las hojas se apoya en la evidencia explícita del enunciado ("atributos de calidad críticos", "imperativa", "debe ser accesible en todo momento"), no en el uso de la palabra "debe" ni en la presencia de métricas técnicas. La dificultad es "No especificado" en las diez hojas: el enunciado no describe complejidad técnica explícita de ningún objetivo, y según la sección 34.3 no puede inferirse H/M/L a partir del conocimiento general sobre los atributos.
+**Nota sobre la priorización:** la escala H/M/L y los dos ejes (importancia y dificultad/riesgo) provienen de la sección 19.4 del libro. La importancia se toma de la formulación del enunciado, distinguiendo las restricciones verificables presentes de las preparaciones a futuro; la dificultad se gradúa con datos del propio sistema y del estado del ADD (externos heterogéneos, escala global y picos, PII, drivers parciales), no con conocimiento general sobre los atributos, según la sección 34.3. Esta distinción permite ordenar las diez hojas sin inventar métricas: el orden resultante se presenta al inicio de esta sección y es consistente con el orden en que el ADD fue abordando cada escenario.
 
 ---
 
@@ -266,8 +279,9 @@ UTILITY
 - [x] No se agregaron contextos hipotéticos (peak load, temporadas, DDoS, etc.).
 - [x] No se inventaron detalles técnicos para justificar prioridades.
 - [x] El vocabulario del GS (fault, latency, deadline, etc.) va entre paréntesis como referencia bibliográfica.
-- [x] Dificultad "No especificado" en las diez hojas, sin inferir H/M/L por conocimiento general.
-- [x] Importancia sustentada en criticidad explícita del enunciado, no en la palabra "debe" ni en las métricas.
+- [x] Importancia y dificultad/riesgo graduadas en escala H/M/L en las diez hojas.
+- [x] Importancia derivada del enunciado y dificultad derivada de las características del sistema y del estado del ADD, sin inferir H/M/L por conocimiento general.
+- [x] Priorización consistente con el orden en que el ADD abordó cada escenario.
 - [x] Justificación de prioridades en exactamente dos líneas por hoja.
 - [x] Cada preocupación tiene evidencia del enunciado; no se forzaron subdivisiones.
-- [x] "No especificado" conservado donde el enunciado no aporta datos.
+- [x] "No especificado" conservado en las partes de los escenarios donde el enunciado no aporta datos (no en la priorización).
