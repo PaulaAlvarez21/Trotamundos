@@ -67,4 +67,46 @@ El orden resultante coincide con el modo en que el ADD fue tomando los escenario
 
 ---
 
+## Corrección B — Evaluación del Paso 7 del ADD
+
+**Archivo modificado:** `Documentacion/ADD.md` (Pasos 7 de las 5 iteraciones).
+**Estado:** aplicada.
+
+### 1. Problema detectado
+
+Los cinco `Paso 7 — Analizar el diseño y revisar el objetivo` cerraban con la frase "objetivo cumplido" sin cálculos ni evidencia, y sin distinguir entre lo que la arquitectura propone y lo que se pudo demostrar. Además, esa afirmación contradecía el backlog (§9.1), donde QA-04, QA-05 y QA-09 figuran como *Parcial*.
+
+### 2. Por qué se corrigió
+
+El profesor señaló justamente ese punto: declarar cumplimiento sin argumentos cuantitativos ni evaluación del resultado. La corrección no rehace las iteraciones —la hoja de ruta y las decisiones están bien evaluadas—, solo hace explícita la evaluación que ya estaba implícita en los riesgos y en el backlog.
+
+### 3. Solución aplicada
+
+Se conservaron los bullets existentes de `Satisfacción de drivers`, `Riesgos/gaps` y `Nuevos ítems`. A cada Paso 7 se le agregaron dos bullets nuevos y se reemplazó únicamente la línea de `Conclusión`:
+
+- **Estado del objetivo:** usa los tres valores pedidos —Cumplido, Parcial o Pendiente— y cita los MADR y el §9.1. Iteraciones 1 a 4 quedan *Parcial*; la 5 queda *Cumplido* para el módulo, con QA-09 y el contrato con la agencia como parciales.
+- **Evidencia cuantitativa simple:** una cifra o argumento por iteración, siempre con procedencia declarada (enunciado, supuesto explícito o evidencia documental del ADD).
+- **Conclusión:** deja de decir "objetivo cumplido" y explica qué quedó decidido, qué sigue parcial y qué no se demostró.
+
+### 4. Procedencia de las cifras
+
+Ninguna cifra es un resultado de prueba ni una estimación presentada como dato real:
+
+| Cálculo / argumento | Procedencia | Uso en el Paso 7 |
+|---|---|---|
+| 5 min/mes → ≈ 99,988 % | Enunciado + supuesto explícito de mes de 30 días (43.200 min) | Iteraciones 1 y 4: techo de disponibilidad, sin reparto por componente |
+| 2 M / 15 M ≈ 13 % | Cifras del enunciado | Iteraciones 1 y 3: dimensionar por activos y picos, no por cuentas totales |
+| 300 s para QA-03 | 5 min del enunciado, convertidos | Iteración 2: presupuesto sin desglose entre etapas |
+| 800 ms vs 1.400 ms | Cifras del enunciado | Iteración 3: 600 ms más para móvil justifican la API dedicada |
+| Condición binaria de PII | Texto del enunciado | Iteración 4: sin tasa de accesos inventada |
+| Sin precisión de NLU | Ausencia de métrica en el enunciado | Iteración 5: supuesto de evaluación futura, no resultado |
+
+Cuando faltan datos (RPS, si 800 ms es máximo o percentil, precisión del NLU), se dice explícitamente y no se inventa un valor.
+
+### 5. Relación con el resto del trabajo
+
+La evaluación queda alineada con la corrección A: los QA con mayor riesgo del árbol (QA-04, QA-05, QA-03, QA-06) son justamente los que aparecen como parciales o sin medir en estos Pasos 7. No se modificó el backlog ni la sección de riesgos, porque ya contenían esos datos y ahora se los cita como evidencia. El prototipo sigue intacto: se dice que no mide disponibilidad, latencias ni precisión, sin pedirle cambios.
+
+---
+
 Las correcciones restantes se irán registrando aquí a medida que se realicen, una por una.

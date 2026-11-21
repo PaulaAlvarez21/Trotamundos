@@ -227,7 +227,14 @@ Asistente Virtual (este último en la Iteración 5).
   botella); falta estrategia concreta de cacheo, ingesta asíncrona, seguridad y analítica.
 - **Nuevos ítems para el backlog:** estrategia de caché/CDN; mensajería asíncrona; autenticación;
   aislamiento analítico; adaptadores de proveedores.
-- **Conclusión:** objetivo cumplido; se continúa iterando.
+- **Estado del objetivo:** Parcial. La estructura general quedó definida (MADR-0001/0002), pero
+  QA-04, QA-05 y QA-09 siguen *Parcial* en el backlog (§9.1).
+- **Evidencia cuantitativa simple:** 5 min/mes → con el supuesto explícito de mes de 30 días
+  (43.200 min), ≈ 99,988 % de disponibilidad; 2 M / 15 M ≈ 13 % de cuentas activas. Son
+  conversiones de cifras del enunciado, no mediciones: muestran que el clúster balanceado no
+  cuantifica QA-04 ni dimensiona QA-05.
+- **Conclusión:** la estructura está decidida y trazada; la disponibilidad y la capacidad quedan
+  parciales y su demostración pendiente. Se continúa iterando.
 
 ---
 
@@ -293,7 +300,14 @@ DLQ (ver [vista C&C de ingesta](./Diagramas/iter2_cc_ingesta.md)).
 - **Riesgos/gaps:** consistencia eventual; cuotas y límites de rate de proveedores; monitoreo del
   *lag* de la cola.
 - **Nuevos ítems:** definir periodos de polling y política de reintentos; observabilidad del pipeline.
-- **Conclusión:** objetivo cumplido; se continúa iterando.
+- **Estado del objetivo:** Parcial. QA-03 y QA-06 quedan cubiertos en el diseño (MADR-0003 a
+  MADR-0006); QA-04 sigue parcial.
+- **Evidencia cuantitativa simple:** el enunciado da 5 min = 300 s de presupuesto para QA-03, sin
+  desglose entre detección, traducción, cola y persistencia; por eso no se afirma que se cumple
+  "holgadamente". QA-06 no tiene métrica en la consigna: se evalúa por la presencia de
+  adaptadores/ACL, sin inventar porcentajes.
+- **Conclusión:** el pipeline y los adaptadores están decididos; la ventana de 5 min no está
+  desglosada ni medida y QA-04 continúa parcial. Se continúa iterando.
 
 ---
 
@@ -360,7 +374,15 @@ Modelo de lectura desnormalizado, Réplica de lectura y CDN (ver
 - **Riesgos/gaps:** consistencia eventual (TTL/invalidación); costo operativo multiregión; la
   consigna no define si los 800 ms son máximo/promedio/percentil.
 - **Nuevos ítems:** política de invalidación de caché; métricas de rendimiento reales.
-- **Conclusión:** objetivo cumplido; se continúa iterando.
+- **Estado del objetivo:** Parcial. QA-01, QA-02 y QA-10 quedan cubiertos en el diseño (MADR-0007
+  a MADR-0010); QA-05 sigue parcial.
+- **Evidencia cuantitativa simple:** 800 ms en web vs 1.400 ms en móvil → 600 ms más de
+  presupuesto para el FCP, cifras del enunciado que justifican la API dedicada (MADR-0007). La
+  relación 2 M / 15 M ≈ 13 % indica que se dimensiona por activos y picos; sin RPS no se calcula
+  capacidad. Supuesto explícito: "800 ms" sin precisar si es máximo o percentil (§11.2), usado
+  solo para comparar.
+- **Conclusión:** las decisiones de acceso están tomadas, pero los umbrales no se midieron en el
+  prototipo y QA-05 continúa parcial. Se continúa iterando.
 
 ---
 
@@ -423,7 +445,13 @@ analítico (ver [vista de seguridad y analítica](./Diagramas/iter4_cc_seguridad
 - **Riesgos/gaps:** el componente de autorización es crítico (debe redundarse — QA-04); tratamiento
   de PII; frescura de los datos analíticos.
 - **Nuevos ítems:** definir auditoría y compliance; métricas de la frescura analítica.
-- **Conclusión:** objetivo cumplido; se continúa a la iteración del módulo avanzado.
+- **Estado del objetivo:** Parcial. QA-07, QA-08 y RF-09 quedan cubiertos en el diseño (MADR-0011
+  a MADR-0013); QA-04 vuelve a quedar parcial.
+- **Evidencia cuantitativa simple:** para PII la condición del enunciado es binaria (autorizado /
+  no autorizado), sin tasa inventada. El techo de 5 min/mes (≈ 99,988 % con el supuesto de 30
+  días) es compartido por el componente de autorización y hoy no tiene reparto por componente.
+- **Conclusión:** seguridad y analítica están decididas; la auditoría de PII y el reparto de
+  disponibilidad quedan pendientes. Se continúa a la iteración 5.
 
 ---
 
@@ -486,8 +514,15 @@ Acciones y adaptador de handoff (ver [vista C&C del chatbot](./Diagramas/iter5_c
 - **Riesgos/gaps:** precisión del NLU; calidad del escalamiento; privacidad de los datos enviados al
   proveedor de NLU; falta definir el contrato concreto con la agencia.
 - **Nuevos ítems:** evaluación de precisión; contrato con la agencia; política de datos del NLU.
-- **Conclusión:** objetivo cumplido. El diseño cumple los 5 objetivos iterativos; restan refinamientos
-  de detalle y la implementación del prototipo.
+- **Estado del objetivo:** Cumplido para el objetivo del módulo (RF-06/RF-08, MADR-0014 a
+  MADR-0016); Parcial en QA-09 (§9.1) y en el contrato con la agencia (Kanban).
+- **Evidencia cuantitativa simple:** el enunciado no da precisión de NLU ni métrica de usabilidad,
+  así que no se presenta ningún porcentaje. Supuesto explícito: la precisión se evaluaría con un
+  conjunto de intenciones aún no definido; es criterio futuro, no resultado. Sí es evidencia
+  documental que QA-09 figure como *Parcial* y que el contrato esté en el Kanban.
+- **Conclusión:** el módulo avanzado queda incorporado en el diseño; la precisión del NLU, el acuerdo
+  con la agencia y QA-09 quedan pendientes. Se cierra el ADD con esas limitaciones explícitas, sin
+  afirmar demostración.
 
 ---
 
