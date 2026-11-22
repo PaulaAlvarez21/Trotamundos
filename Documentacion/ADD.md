@@ -575,6 +575,14 @@ Acciones y adaptador de handoff (ver [vista C&C del chatbot](./Diagramas/iter5_c
 | QA-01, QA-02, QA-05, QA-10 | MADR-0007, MADR-0008, MADR-0009, MADR-0010 | iter3_cc_acceso, iter3_secuencia_consulta_web |
 | QA-07, QA-08, RF-09 | MADR-0011, MADR-0012, MADR-0013 | iter4_cc_seguridad_analitica, iter4_secuencia_itinerario_compartido |
 | RF-06, RF-08, QA-10, QA-09 | MADR-0014, MADR-0015, MADR-0016 | iter5_cc_chatbot, iter5_secuencia_handoff |
+| QA-03, QA-04, QA-05 | MADR-0017 Disponibilidad y tolerancia a fallos | iter1_despliegue, iter2_cc_ingesta |
+| QA-04, QA-05, QA-10 | MADR-0018 Continuidad y recuperación multirregión | iter1_despliegue, iter3_cc_acceso |
+| RF-02, RF-05, QA-03, QA-08, QA-09 | MADR-0019 Propiedad y ciclo de vida de los datos | iter1_capas, iter4_cc_seguridad_analitica |
+| QA-04, QA-05, QA-09 | MADR-0020 Infraestructura y nube | iter1_despliegue |
+| QA-06, QA-09, RF-04 | MADR-0021 Especificación y gobierno de contratos | iter2_cc_ingesta, iter3_cc_acceso, iter5_cc_chatbot |
+
+Los MADR-0017 a MADR-0021 son decisiones transversales registradas fuera de las 5 iteraciones; no
+constituyen una nueva iteración del ADD.
 
 ---
 
@@ -585,12 +593,15 @@ Acciones y adaptador de handoff (ver [vista C&C del chatbot](./Diagramas/iter5_c
    *Estado: brecha de información.*
 2. **Rendimiento (QA-01):** no se aclara si 800 ms es máximo, promedio o percentil, ni las
    condiciones de red. *Estado: brecha de información; supuesto conservador.*
-3. **Disponibilidad (QA-04):** no se define cómo se contabilizan interrupciones parciales ni globales
-   por región. *Estado: brecha de información.*
-4. **Interoperabilidad (QA-06):** no hay métrica cuantitativa; se proponen pruebas de contrato.
-   *Estado: inferencia de diseño.*
-5. **Proveedor de nube / tecnologías concretas:** no especificados; quedan como decisión abierta del
-   *backlog* (no afectan la estructura, pero sí el despliegue final).
+3. **Disponibilidad (QA-04):** la tolerancia a fallos y la continuidad multirregión quedan decididas
+   en MADR-0017 y MADR-0018, pero sigue sin definirse cómo se contabilizan interrupciones parciales
+   ni globales por región; tampoco hay reparto del presupuesto de 5 min/mes por componente.
+   *Estado: brecha de información; decisión de diseño documentada.*
+4. **Interoperabilidad (QA-06):** no hay métrica cuantitativa; las pruebas de contrato propuestas
+   quedan gobernadas por MADR-0021. *Estado: inferencia de diseño; parámetros de medición abiertos.*
+5. **Proveedor de nube / tecnologías concretas:** no especificados. MADR-0020 decide el modelo de
+   infraestructura (servicios gestionados con capa de abstracción), pero el proveedor concreto sigue
+   siendo decisión abierta del *backlog* (no afecta la estructura, pero sí el despliegue final).
 6. **Motor de NLU y contrato con la agencia:** sin especificar; decisión abierta (MADR-0016).
 7. **Imagen del diagrama de contexto:** no pudo leerse automáticamente; se reconstruyó una versión
    Mermaid a partir de la descripción textual (ver [`Diagramas/00_contexto.md`](./Diagramas/00_contexto.md)).

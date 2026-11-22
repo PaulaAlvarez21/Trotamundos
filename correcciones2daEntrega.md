@@ -203,7 +203,83 @@ y la DLQ como rectángulos en `iter2_cc_ingesta`, las etiquetas de flujo en `ite
 
 No se modificó ningún bloque Mermaid: el diff de las 12 vistas es de 171 líneas agregadas y una
 solamente eliminada (la errata). No se tocaron el prototipo, el ADD ni los MADR. La corrección D
-queda pendiente para después y no se inició la F.
+se registró más abajo y no se inició la F.
+
+---
+
+## Corrección D — MADR faltantes
+
+**Archivos creados:** `Documentacion/MADR/MADR-0017` a `MADR-0021`.
+**Archivos modificados:** `Documentacion/ADD.md` (§10 y §11).
+**Estado:** aplicada.
+
+### 1. Relevo previo
+
+Se revisaron los 16 MADR existentes antes de crear nada. Cinco temas del profesor tenían cobertura
+parcial pero ningún dueño:
+
+| Tema | Cobertura previa | Brecha |
+|---|---|---|
+| Disponibilidad | Tácticas sueltas en 0001, 0004 y 0011 | Sin estrategia conjunta ni forma de contabilizar interrupciones (ADD §11.3); QA-04 *Parcial* |
+| Multirregión | MADR-0010 (i18n + CDN) | Sin failover ni recuperación ante fallo regional |
+| Datos | 0004, 0009, 0012 y 0013 cubren partes | Sin propiedad ni ciclo de vida (RF-02 y RF-05 *Parciales*) |
+| Nube | Clúster balanceado en MADR-0001 | Proveedor y modelo de infraestructura abiertos (ADD §11.5 y Kanban) |
+| Contratos | 0005, 0007 y 0015 rozan el tema | Sin specs, versionado ni validación, pese a que el enunciado pide *Spec-driven* (§79) |
+
+### 2. Criterio: crear uno nuevo vs. ampliar
+
+Se crearon 5 MADR porque cada tema tiene un driver distinto del MADR que lo rozaba. En particular,
+**MADR-0010 quedó intacto**: sigue decidiendo i18n y CDN (QA-10), mientras que el nuevo MADR-0018
+decide continuidad (QA-04). No se agregaron ADR para aumentar la cantidad de documentos.
+
+### 3. Decisiones documentadas
+
+| MADR | Decisión | Drivers |
+|---|---|---|
+| 0017 — Disponibilidad y tolerancia a fallos | Redundancia + degradación controlada (*health checks*, *timeouts*, *circuit breaker*, reintentos, *fallback*); Alternativas: solo redundancia de instancias; replicación síncrona de BD | QA-04, QA-05, QA-03 |
+| 0018 — Continuidad y recuperación multirregión | Activo-pasivo con failover asistido y restauración; Alternativas: activo-activo; una sola región con backups | QA-04, QA-10, QA-05 |
+| 0019 — Propiedad y ciclo de vida de los datos | Dueño por módulo sobre base relacional compartida con contrato de esquema; Alternativas: base por módulo; esquema único sin propietario | RF-02, RF-05, QA-03, QA-08, QA-09 |
+| 0020 — Infraestructura y nube | Servicios gestionados con capa de abstracción, proveedor a elegir después; Alternativas: autohospedado en IaaS; *serverless* | QA-04, QA-05, QA-09, restricción *startup* |
+| 0021 — Especificación y gobierno de contratos | *Spec-first* (OpenAPI/AsyncAPI) con versionado y pruebas de contrato; Alternativas: *code-first*; documentación informal | QA-06, QA-09, RF-04, enunciado §79 |
+
+### 4. Cumplimiento de lo corregido en C
+
+Los 5 MADR usan el mismo formato del `MADR-template.md` que los existentes y repiten las tres
+prácticas incorporadas en la corrección C:
+
+- **Alternativas realistas:** tres por decisión, sin duplicados ni escenarios irrealistas, con
+  ventajas y desventajas atadas a los QA.
+- **Procedencia de cifras:** solo las del enunciado (5 min/mes, 2 M/15 M) y la conversión a
+  ≈ 99,988 % ya documentada en el ADD con supuesto de mes de 30 días. Los parámetros no dados
+  (RPO, RTO, retención, proveedor, umbrales de *timeout*) se declaran abiertos: no se inventaron
+  valores ni porcentajes, y no se afirma que QA-04 esté demostrado.
+- **Coherencia con el prototipo:** una línea breve por MADR. La maqueta se trata como maqueta: no se
+  adaptaron las decisiones a lo que implementa ni se afirmó que las implementa. Tampoco se
+  contradijeron decisiones previas (cola asíncrona, BFF, caché, OAuth2/RBAC, ACL, multirregión).
+
+### 5. Ajustes en el ADD y alcance
+
+- **§10 Trazabilidad:** se agregaron 5 filas, una por MADR, más una aclaración de que son decisiones
+  transversales fuera de las 5 iteraciones.
+- **§11 Riesgos:** se actualizaron las brechas 3, 4 y 5 para indicar que ya hay decisión de diseño,
+  manteniendo abiertos los parámetros de medición, el proveedor y el reparto de disponibilidad.
+- **No se modificaron** el backlog (§9.1), los `Paso 7` de la corrección B, las vistas, el Kanban ni
+  el prototipo. No se creó una nueva iteración ADD (la corrección F sigue afuera).
+
+### 6. Chequeo final de consistencia con el ADD
+
+Tras releer el ADD y los MADR existentes se aplicaron cinco ajustes cosméticos, sin cambiar ninguna
+decisión:
+
+- **ADD §10:** las filas de MADR-0017 a MADR-0020 ahora listan exactamente los mismos drivers que la
+  sección `Drivers de decisión` de cada MADR (la fila de MADR-0021 ya coincidía).
+- **MADR-0017:** se precisó que la opción de replicación síncrona *introduce consistencia síncrona
+  donde MADR-0004 decidió asincronía para la ingesta*, en lugar de decir que la "contradice".
+- **MADR-0018:** se quitó RF-01 de los drivers (QA-10 ya cubre el acceso global y no figuraba en el
+  ADD ni en este registro) y se aclaró que la *única región de escritura* no altera la propiedad de
+  datos por módulo de MADR-0019: son ejes distintos.
+- **MADR-0019:** se hizo explícito que la propiedad de datos no modifica el camino de frescura de
+  QA-03 definido en MADR-0003/0004, para que el driver listado no quede sin relación con la decisión.
 
 ---
 
