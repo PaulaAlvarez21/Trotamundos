@@ -546,7 +546,7 @@ Acciones y adaptador de handoff (ver [vista C&C del chatbot](./Diagramas/iter5_c
 | QA-01 | Performance web | Atendido | 3 |
 | QA-02 | Performance móvil | Atendido | 3 |
 | QA-03 | Frescura ≤ 5 min | Atendido | 2 |
-| QA-04 | Availability | Parcial | 1, 4 |
+| QA-04 | Availability | Parcial | 1, 2, 4 |
 | QA-05 | Modifiability (capacidad) | Parcial | 1, 3 |
 | QA-06 | Interoperability | Atendido | 1, 2 |
 | QA-07 | Security de compartición | Atendido | 4 |

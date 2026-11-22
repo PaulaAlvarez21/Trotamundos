@@ -283,4 +283,55 @@ decisión:
 
 ---
 
-Las correcciones restantes se irán registrando aquí a medida que se realicen, una por una.
+## Corrección F — Iteraciones ADD y disponibilidad
+
+**Archivos modificados:** `Documentacion/ADD.md` (§9.1) y `correcciones2daEntrega.md`.
+**Estado:** aplicada.
+
+### 1. Relevo
+
+El profesor señaló que no vio una iteración del ADD dedicada a la disponibilidad. Al releer las cinco
+iteraciones, la disponibilidad no está ausente: figura como driver en la hoja de ruta (§3), se
+selecciona en los Pasos 1 de tres iteraciones, se concreta en tácticas y elementos de diseño y se
+revisa en sus Pasos 7. **No fue el objetivo principal de una iteración, pero sí se trató en varias**,
+de forma repartida. Además, la corrección D documentó la estrategia conjunta que faltaba.
+
+### 2. Dónde se trata QA-04 y de qué forma
+
+| Iteración | Cómo se trata | Soluciones buscadas |
+|---|---|---|
+| **1 — Estructura general** | Driver en la hoja de ruta y en el Paso 1. El Paso 2 la menciona como consecuencia esperada de la estructura general | Despliegue distribuido y clúster balanceado (MADR-0001): escalado horizontal y tolerancia a la caída de una instancia, evitando puntos únicos de fallo |
+| **2 — Ingesta e integraciones** | Paso 1: *"QA-04 (ante fallos de proveedores)"*. Paso 2: ingesta confiable con tolerancia a fallos externos. Paso 4: tácticas *ping/echo*, *circuit breaker* y redundancia. Paso 7: QA-04 se atribuye a reintentos, DLQ y desacoplamiento | Cola/bus, registro de idempotencia y DLQ (MADR-0004): que una caída momentánea del proveedor o del consumidor no pierda eventos. *Aclaración:* los "5 minutos" del Paso 2 son de QA-03 (frescura), no los 5 min/mes de QA-04 |
+| **4 — Seguridad, compartición y analítica** | Paso 1: *"QA-04 (disponibilidad de seguridad)"*. Paso 4: redundar el componente de autorización. Paso 7: se marca como riesgo | Evitar que la autorización centralizada —crítica según MADR-0011— se convierta en punto único de fallo |
+| **3 y 5** | No seleccionan QA-04; sus objetivos son rendimiento/usabilidad y asistente virtual | — |
+
+En las tres iteraciones QA-04 cierra *Parcial* en el Paso 7: se trató como **estructura** (iteración
+1), **ingesta** (iteración 2) y **seguridad** (iteración 4). Lo que no existía era una estrategia
+conjunta y medible; eso se completó en la corrección D con MADR-0017 (tolerancia a fallos),
+MADR-0018 (continuidad multirregión) y MADR-0020 (infraestructura), más la trazabilidad en §10 y las
+brechas 3–5 en §11. El propio ADD declara esas decisiones como transversales a las cinco iteraciones.
+
+### 3. Por qué no se agregó una iteración nueva
+
+- El enunciado pide **4 iteraciones como mínimo**, no una por atributo de calidad: las 5 actuales ya
+  cumplen ese requisito.
+- **QA-04 no fue olvidado**: está en la hoja de ruta, en tres Pasos 1, en tácticas y elementos
+  concretos y en tres Pasos 7. Una sexta iteración no agregaría decisiones nuevas y dejaría sin
+  sentido el tratamiento ya documentado.
+- Se evaluó reorganizar o ajustar una existente: cambiar el objetivo de la iteración 2 reescribiría
+  una parte ya evaluada y reduciría la disponibilidad a la ingesta, sin cubrir la continuidad
+  multirregión ni la infraestructura, que ya están resueltas en D.
+- En cambio se corrigió el seguimiento: **§9.1 pasa de `QA-04 | Parcial | 1, 4` a
+  `QA-04 | Parcial | 1, 2, 4`**, para que el backlog refleje que la iteración 2 sí trató QA-04. Se
+  mantiene la aclaración de §10 sobre las decisiones transversales.
+
+### 4. Estado y alcance
+
+- QA-04 sigue *Parcial*: no se afirma que se cumplan los 5 min/mes, no se inventa medición ni reparto
+  por componente, y la contabilización de interrupciones permanece abierta (§11.3).
+- No se crean MADR, vistas ni código. Las únicas modificaciones son esta entrada y la celda del
+  backlog en §9.1.
+
+---
+
+Con las correcciones A, B, C, D, E y F ya registradas, este documento queda completo.
